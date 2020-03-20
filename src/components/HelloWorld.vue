@@ -37,7 +37,7 @@ export default {
   
   methods: {
    
-
+//vironikaaaa
     test: function () {
       let q = []
       let w = []
