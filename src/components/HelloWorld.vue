@@ -16,27 +16,27 @@ export default {
   data() {
 
     return {
-      x : [{
+      x : {
         a: 0,
         b: 18,
         c: 7.5
-     }],
+     },
      y : {
         a: 0,
         b: 0,
         c: 16
       },
-      z : [{
+      z : {
         a: 28.5,
         b: 0,
         c: 27
-     }]
+     }
     }
   },
   
   
   methods: {
-   // const readline = require('readline'),
+   
 
     test: function () {
       let q = []
@@ -48,7 +48,7 @@ export default {
       q = -(p2 - p3) / (2 * this.z.a)
       return ("координата х = " + q + ", координата y = " + w)
       
-    }  
+    } , 
   },
 }
 </script>
