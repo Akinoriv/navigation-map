@@ -1,41 +1,55 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+<div class="container">  
+    
+ <h1>Добро пожаловать в локальный навигатор</h1>
+    <div id="coords">(координаты покажутся здесь)</div>
+    <img src="imagen.img/Снимок экрана 2020-03-05 в 14.44.59.png" class="img-fluid" style=" width: 700px;height: 400px;" alt="Responsive image">
+   
+<a> hdsxc vbnjuytrdcbnmkuv {{test()}} </a>
+    
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  data() {
+
+    return {
+      x : [{
+        a: 0,
+        b: 18,
+        c: 7.5
+     }],
+     y : {
+        a: 0,
+        b: 0,
+        c: 16
+      },
+      z : [{
+        a: 28.5,
+        b: 0,
+        c: 27
+     }]
+    }
+  },
+  
+  
+  methods: {
+   // const readline = require('readline'),
+
+    test: function () {
+      let q = []
+      let w = []
+      var p1 = -2 * this.x.a * w - 2 * this.x.b * q + Math.pow(this.x.a, 2) + Math.pow(this.x.b, 2) - Math.pow(this.x.c, 2)
+      var p2 = -2 * this.y.a * w - 2 * this.y.b * q + Math.pow(this.y.a, 2) + Math.pow(this.y.b, 2) - Math.pow(this.y.c, 2)
+      var p3 = -2 * this.z.a * w - 2 * this.z.b * q + Math.pow(this.z.a, 2) + Math.pow(this.z.b, 2) - Math.pow(this.z.c, 2)
+      w = (p1 - p2) / (2 * this.x.b)
+      q = -(p2 - p3) / (2 * this.z.a)
+      return ("координата х = " + q + ", координата y = " + w)
+      
+    }  
+  },
 }
 </script>
 
