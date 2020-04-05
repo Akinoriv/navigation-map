@@ -13,19 +13,17 @@
     <input required="true" class=" col-sm-1" type="text"  id="P3" placeholder="P3" v-model="z.c" > 
     
   </div>
-  <div id="coords">
+  <div>
     <h2>Координаты вашей точки</h2>
     <a>  {{test()}} </a>
   </div>
-
-   
-
-   
-
-  </div>
+  <canvas id='example'>Canvas</canvas>
+</div> 
 </template>
 
 <script>
+
+
 export default {
   data() {
 
@@ -44,13 +42,24 @@ export default {
         a: 28.5,
         b: 0,
         c: 27
-     }
+     },
+     
+      ctx: null,  
+      
     }
-  },
   
+ 
+},
   
   methods: {
    
+    updateCanvas: function() {
+      var example = document.getElementById("example");
+      this.ctx = example.getContext('2d');
+			example.height = 200;
+      example.width  = 300;
+      rect()
+    },
 //vironikaaaa
     test: function () {
       let q = []
@@ -64,7 +73,12 @@ export default {
       
     } , 
   },
+  mounted: function () {
+    this.updateCanvas()
+    // тут функции при запуске страници которые будут выполняться
+  }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
