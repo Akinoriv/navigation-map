@@ -1,12 +1,26 @@
 <template>
 <div class="container">  
+  <h1>Добро пожаловать в локальный навигатор</h1>
+  <div> 
+    <h2> Введите расстоение до датчика </h2>
+    <label for="P1"> Длина №1 </label>
+    <input required="true" class=" col-sm-1" type="text"  id="P1" placeholder="P1" v-model="x.c" > 
+    <br>
+    <label for="P2" > Длина №2 </label>
+    <input required="true" class="color col-sm-1" type="text"  id="P2" placeholder="P2" v-model="y.c" > 
+    <br>
+    <label for="P3"> Длина №3 </label> 
+    <input required="true" class=" col-sm-1" type="text"  id="P3" placeholder="P3" v-model="z.c" > 
     
- <h1>Добро пожаловать в локальный навигатор</h1>
-    <div id="coords">(координаты покажутся здесь)</div>
-    <img src="imagen.img/Снимок экрана 2020-03-05 в 14.44.59.png" class="img-fluid" style=" width: 700px;height: 400px;" alt="Responsive image">
+  </div>
+  <div id="coords">
+    <h2>Координаты вашей точки</h2>
+    <a>  {{test()}} </a>
+  </div>
+
    
-<a> hdsxc vbnjuytrdcbnmkuv {{test()}} </a>
-    
+
+   
 
   </div>
 </template>
