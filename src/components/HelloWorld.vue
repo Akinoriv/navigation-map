@@ -53,13 +53,13 @@ export default {
   
   methods: {
    
-    updateCanvas: function() {
-      var example = document.getElementById("example");
-      this.ctx = example.getContext('2d');
-			example.height = 200;
-      example.width  = 300;
-      rect()
-    },
+    // updateCanvas: function() {
+    //   var example = document.getElementById("example");
+    //   this.ctx = example.getContext('2d');
+		// 	example.height = 200;
+    //   example.width  = 300;
+    //   rect()
+    // },
 //vironikaaaa
     test: function () {
       let q = []
