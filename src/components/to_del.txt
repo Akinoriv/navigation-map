@@ -1,0 +1,12 @@
+var img = document.getElementById("123");
+      //var img = new Image();
+      //img.src = "./assets/logo_2.png";
+      this.ctx.drawImage(img, 10, 10);
+      //img.onload = function() {    
+      
+          // this.ctx.fillStyle = pattern;
+          // this.ctx.fillRect(1000, 1000, 300, 400);
+          // this.ctx.strokeRect(10, 10, 150, 150);
+        //this.ctx.drawImage(img, 0, 0);
+      //}
+    

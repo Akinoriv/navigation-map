@@ -15,7 +15,7 @@
   </div>
   <div>
     <h2>Координаты вашей точки</h2>
-    <a>  {{test()}} </a>
+    <a>  {{trilatiratiom2d()}} </a>
   </div>
   <canvas id='example'>Canvas</canvas>
 </div> 
@@ -53,15 +53,40 @@ export default {
   
   methods: {
    
-    // updateCanvas: function() {
-    //   var example = document.getElementById("example");
-    //   this.ctx = example.getContext('2d');
-		// 	example.height = 200;
-    //   example.width  = 300;
-    //   rect()
-    // },
+    updateCanvas: function() {
+      var canvas = document.getElementById("example");
+      this.ctx = canvas.getContext('2d');
+
+      canvas.height = 480;
+			canvas.width  = 640;
+			// this.ctx.beginPath();
+			// this.ctx.moveTo(10, 15);
+			// this.ctx.bezierCurveTo(75, 55, 175, 20, 250, 15);
+			// this.ctx.moveTo(10, 15);
+			// this.ctx.quadraticCurveTo(100, 100, 250, 15);
+      // this.ctx.stroke();      
+      //var img = new Image(); 
+      var img = document.getElementById("123");
+      this.ctx.drawImage(img, 0, 0);
+      img.onload = function() {    
+        
+          // this.ctx.fillStyle = pattern;
+          // this.ctx.fillRect(1000, 1000, 300, 400);
+          // this.ctx.strokeRect(10, 10, 150, 150);
+
+        //var wRatio = canvas.width / img.width;
+        //var hRatio = canvas.height / img.height;
+        //var ratio = Math.min (wRatio, hRatio);
+        //alert(ratio)
+        //this.ctx.drawImage(img, 0, 0, canvas.width, canvas.height,0,0,img.width*ratio, img.height*ratio);
+        //this.ctx.drawImage(img, 0, 0, 200, 400)
+        //this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+        this.ctx.drawImage(img, 0, 0);
+      }
+    
+    },
 //vironikaaaa
-    test: function () {
+    trilatiratiom2d: function () {
       let q = []
       let w = []
       var p1 = -2 * this.x.a * w - 2 * this.x.b * q + Math.pow(this.x.a, 2) + Math.pow(this.x.b, 2) - Math.pow(this.x.c, 2)
@@ -97,4 +122,6 @@ li {
 a {
   color: #42b983;
 }
+
+
 </style>

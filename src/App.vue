@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png"  style=" width: 200px;">
+    <img alt="Vue logo" id="123" src="./assets/logo.png"  style=" width: 200px;">
     <HelloWorld msg="welcome to the creation Akinoriv"/>
   </div>
 </template>
