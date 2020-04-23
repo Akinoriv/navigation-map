@@ -65,7 +65,7 @@ export default {
                 var ctx = canvas.getContext("2d");
                  
             var img = new Image();
-            img.src = "./img/room.png";
+            img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/room.png?raw=true";
             img.onload = function() {
                  
                 var pattern = ctx.createPattern(img, "repeat");
