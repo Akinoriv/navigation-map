@@ -16,13 +16,9 @@
   <div>
     <h2>Координаты вашей точки</h2>
     <a>  {{trilatiratiom2d()}} </a>
-    {{test()}}
   </div>
   <div id="coords">(координаты покажутся здесь)</div>
-   <canvas id="myCanvas" width="500" height="300"
-    style="background-color:#eee; border:1px solid #ccc;">
-    Ваш браузер не поддерживает Canvas
-  </canvas>
+   <canvas id="myCanvas"> </canvas>
   
 </div> 
 </template>
@@ -37,7 +33,7 @@ export default {
       x : {
         a: 0,
         b: 160,
-        c: 210
+        c: 110
      },
      y : {
         a: 0,
@@ -54,25 +50,27 @@ export default {
       ctx: null,  
       
     }
-  
- 
 },
   
   methods: {
    
     updateCanva: function() {
         var canvas = document.getElementById("myCanvas");
-                var ctx = canvas.getContext("2d");
-                 
-            var img = new Image();
-            img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/room.png?raw=true";
-            img.onload = function() {
-                 
-                var pattern = ctx.createPattern(img, "repeat");
-                ctx.fillStyle = pattern;
-                ctx.fillRect(0, 0, 500, 300);
-                
-            }
+        canvas.height = 480;
+        canvas.width = 640;
+        var ctx = canvas.getContext("2d");        
+        var img = new Image();
+
+        img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/room.png?raw=true";
+        img.onload = function() {
+            var pattern = ctx.createPattern(img, "no-repeat");
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0, 0, 650, 400);
+            ctx.stroke(); 
+        } 
+        //ctx.moveTo(0, 0);
+        ctx.rect(this.w, this.q, 5, 5);
+        //ctx.stroke(); 
     },
       // var canvas = document.getElementById("example");
       // canvas.height = 480;
@@ -139,17 +137,13 @@ export default {
       this.q = -(p2 - p3) / (2 * this.z.a)
       return ("координата х = " + this.q + ", координата y = " + this.w)
     },
-// test
-    test:function () {
-    return ("координата х = " + this.q + ", координата y = " + this.w)
-    },
+
   },
 
 
 
 // Вывод канваса в интерфейс
   mounted: function () {
-    //this.updateCanvas(),
     this.updateCanva()
     // тут функции при запуске страници которые будут выполняться
   }
