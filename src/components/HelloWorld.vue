@@ -19,7 +19,11 @@
     {{test()}}
   </div>
   <div id="coords">(координаты покажутся здесь)</div>
-  <canvas id='example'>Canvas</canvas>
+   <canvas id="myCanvas" width="500" height="300"
+    style="background-color:#eee; border:1px solid #ccc;">
+    Ваш браузер не поддерживает Canvas
+  </canvas>
+  
 </div> 
 </template>
 
@@ -33,7 +37,7 @@ export default {
       x : {
         a: 0,
         b: 160,
-        c: 65
+        c: 210
      },
      y : {
         a: 0,
@@ -43,7 +47,7 @@ export default {
       z : {
         a: 265,
         b: 0,
-        c: 210
+        c: 60
       },
       q:[],
       w:[],
@@ -56,20 +60,38 @@ export default {
   
   methods: {
    
-    // updateCanvas: function() {
-    //   var canvas = document.getElementById("example");
-    //   canvas.height = 480;
-    //   canvas.width  = 640;
+    updateCanva: function() {
+        var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+                 
+            var img = new Image();
+            img.src = "./img/room.png";
+            img.onload = function() {
+                 
+                var pattern = ctx.createPattern(img, "repeat");
+                ctx.fillStyle = pattern;
+                ctx.fillRect(0, 0, 500, 300);
+                
+            }
+    },
+      // var canvas = document.getElementById("example");
+      // canvas.height = 480;
+      // canvas.width  = 640;
 
-    //   var ctx = canvas.getContext('2d');
+      // var ctx = canvas.getContext('2d');
    
-    //   //var img = new Image(); 
-    //   //var img = document.getElementById("123");
-    //   var img = new Image(); 
-    //   img.src = "https://avatars.mds.yandex.net/get-pdb/1870458/3559d035-2493-4396-aa16-696954177fd0/s1200";
-    //   img.onload = function() {    
-    //     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    //   }
+      // //var img = new Image(); 
+      // //var img = document.getElementById("123");
+      // var img = new Image(); 
+      // img.src = "/room.png";
+      // img.onload = function() {    
+      //   ctx.drawImage(img, this.x, this.y, 250, 260);
+      // }
+      // this.ctx.beginPath();
+      // this.ctx.moveTo(0,0);
+      // this.ctx.lineTo(15,0);
+      // this.ctx.lineTo(0,15);
+      // this.ctx.fill()},
     //   // ctx.beginPath();
 		// 	// ctx.moveTo(10, 15);
 		// 	// ctx.bezierCurveTo(75, 55, 175, 20, 250, 15);
@@ -78,34 +100,34 @@ export default {
     //   // ctx.stroke(); 
     // },
 
-    updateCanva: function() {
-      var canvas = document.getElementById("example");
-      canvas.height = 160;
-      canvas.width  = 256;
-      this.ctx = canvas.getContext('2d');
-      this.ctx.strokeRect(0, 0, 256, 160);
+    // updateCanva: function() {
+    //   var canvas = document.getElementById("example");
+    //   canvas.height = 160;
+    //   canvas.width  = 256;
+    //   this.ctx = canvas.getContext('2d');
+    //   this.ctx.strokeRect(0, 0, 256, 160);
 
-      this.ctx.beginPath();
-      this.ctx.moveTo(0,0);
-      this.ctx.lineTo(15,0);
-      this.ctx.lineTo(0,15);
-      this.ctx.fill();
+    //   this.ctx.beginPath();
+    //   this.ctx.moveTo(0,0);
+    //   this.ctx.lineTo(15,0);
+    //   this.ctx.lineTo(0,15);
+    //   this.ctx.fill();
 
-      this.ctx.moveTo(256,0);
-      this.ctx.lineTo(256,15);
-      this.ctx.lineTo(241,0);
-      this.ctx.fill();
+    //   this.ctx.moveTo(256,0);
+    //   this.ctx.lineTo(256,15);
+    //   this.ctx.lineTo(241,0);
+    //   this.ctx.fill();
       
-      this.ctx.moveTo(0,160);
-      this.ctx.lineTo(0,145);
-      this.ctx.lineTo(15,160);
-      this.ctx.fill();
+    //   this.ctx.moveTo(0,160);
+    //   this.ctx.lineTo(0,145);
+    //   this.ctx.lineTo(15,160);
+    //   this.ctx.fill();
     
-			this.ctx.moveTo(0, 0);
-			this.ctx.rect(this.q, this.w, 5, 5);
-      this.ctx.stroke(); 
+		// 	this.ctx.moveTo(0, 0);
+		// 	this.ctx.rect(this.w, this.q, 5, 5);
+    //   this.ctx.stroke(); 
     
-    },
+    // },
 // Подсчет координат
     trilatiratiom2d: function () {
       let q = []
