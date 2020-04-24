@@ -23,8 +23,7 @@
 </div> 
 </template>
 
-<script >
-
+<script>
 
 export default {
   data() {
@@ -138,6 +137,26 @@ export default {
       return ("координата х = " + this.q + ", координата y = " + this.w)
     },
 
+    graph: function () {
+      let createGraph = require('ngraph.graph');
+      let graph = createGraph();
+
+      graph.addLink('a', 'b', {weight: 10});
+      graph.addLink('a', 'c', {weight: 10});
+      graph.addLink('c', 'd', {weight: 5});
+      graph.addLink('b', 'd', {weight: 10});
+      
+      let pathFinder = aStar(graph, {
+  // We tell our pathfinder what should it use as a distance function:
+      distance(fromNode, toNode, link) {
+    // We don't really care about from/to nodes in this case,
+    // as link.data has all needed information:
+       return link.data.weight;
+     }
+      });
+      let path = pathFinder.find('a', 'd');
+      return path
+    } 
   },
 
 
