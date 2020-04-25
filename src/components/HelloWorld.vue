@@ -69,7 +69,7 @@ export default {
         var ctx = canvas.getContext("2d");        
         var img = new Image();
 
-        img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/room.png?raw=true";
+        img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/map.png?raw=true";
         img.onload = function() {
             var pattern = ctx.createPattern(img, "no-repeat");
             ctx.fillStyle = pattern;
@@ -80,59 +80,7 @@ export default {
         ctx.rect(this.w, this.q, 5, 5);
         //ctx.stroke(); 
     },
-      // var canvas = document.getElementById("example");
-      // canvas.height = 480;
-      // canvas.width  = 640;
-
-      // var ctx = canvas.getContext('2d');
-   
-      // //var img = new Image(); 
-      // //var img = document.getElementById("123");
-      // var img = new Image(); 
-      // img.src = "/room.png";
-      // img.onload = function() {    
-      //   ctx.drawImage(img, this.x, this.y, 250, 260);
-      // }
-      // this.ctx.beginPath();
-      // this.ctx.moveTo(0,0);
-      // this.ctx.lineTo(15,0);
-      // this.ctx.lineTo(0,15);
-      // this.ctx.fill()},
-    //   // ctx.beginPath();
-		// 	// ctx.moveTo(10, 15);
-		// 	// ctx.bezierCurveTo(75, 55, 175, 20, 250, 15);
-		// 	// ctx.moveTo(10, 15);
-		// 	// ctx.quadraticCurveTo(100, 100, 250, 15);
-    //   // ctx.stroke(); 
-    // },
-
-    // updateCanva: function() {
-    //   var canvas = document.getElementById("example");
-    //   canvas.height = 160;
-    //   canvas.width  = 256;
-    //   this.ctx = canvas.getContext('2d');
-    //   this.ctx.strokeRect(0, 0, 256, 160);
-
-    //   this.ctx.beginPath();
-    //   this.ctx.moveTo(0,0);
-    //   this.ctx.lineTo(15,0);
-    //   this.ctx.lineTo(0,15);
-    //   this.ctx.fill();
-
-    //   this.ctx.moveTo(256,0);
-    //   this.ctx.lineTo(256,15);
-    //   this.ctx.lineTo(241,0);
-    //   this.ctx.fill();
       
-    //   this.ctx.moveTo(0,160);
-    //   this.ctx.lineTo(0,145);
-    //   this.ctx.lineTo(15,160);
-    //   this.ctx.fill();
-    
-		// 	this.ctx.moveTo(0, 0);
-		// 	this.ctx.rect(this.w, this.q, 5, 5);
-    //   this.ctx.stroke(); 
-    // },
 
 // Подсчет координат
     trilatiratiom2d: function () {
@@ -156,14 +104,18 @@ export default {
       graph.addLink('Flo1', '227-3', {weight: 10});
       graph.addLink('Flo1', 'Flo2', {weight: 50});
       graph.addLink('Flo2', '227-2', {weight: 10});
-      graph.addLink('227-1', '227-2', {weight: 10});
-      this.map = graph
+      //graph.addLink('227-1', '227-2', {weight: 10});
+      //this.map = graph
+
+      return graph
     },
       // новая фунуция которая будет  потгружать map
  // graph    
     graphFine: function () {
+      var graph = this.graphSave()
+
       let path = require('ngraph.path');
-      let pathFinder = path.aStar( this.map, {
+      let pathFinder = path.aStar( graph, {
         // We tell our pathfinder what should it use as a distance function:
         distance(fromNode, toNode, link) {
           // We don't really care about from/to nodes in this case,
