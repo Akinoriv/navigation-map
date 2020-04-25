@@ -15,8 +15,8 @@
   </div>
   <div>
     <h2>Координаты вашей точки</h2> 
-    <a>  {{trilatiratiom2d()}} {{graphfun()}} </a>
-    <!-- {{graphfun()}} -->
+    <a>  {{trilatiratiom2d()}} {{graphFine()}} </a>
+    <!-- {{graphSave()}} -->
   </div>
    <canvas id="myCanvas"> </canvas>
   
@@ -48,6 +48,14 @@ export default {
       w:[],
       ctx: null,  
       
+      map : {}
+      // map : {
+      //   1: [1, 1, 5, 0],
+      //   2: [1, 0, 0, 0],
+      //   3: [1, 0, 0, 0],
+      //   4: [1, 0, 0, 1],
+      //   5: [0, 0, 0, 1],
+      // }
     }
 },
   
@@ -135,22 +143,27 @@ export default {
       var p3 = -2 * this.z.a * w - 2 * this.z.b * q + Math.pow(this.z.a, 2) + Math.pow(this.z.b, 2) - Math.pow(this.z.c, 2)
       this.w = (p1 - p2) / (2 * this.x.b)
       this.q = -(p2 - p3) / (2 * this.z.a)
-      
       return ("координата х = " + this.q + ", координата y = " + this.w)
     },
 
-// Обход графа
-    graphfun: function () {
-      let path = require('ngraph.path');
+// хранение карты save same map
+    graphSave: function () {
+      
       let createGraph = require('ngraph.graph');
       let graph = createGraph();
 
-      graph.addLink('a', 'b', {weight: 10});
-      graph.addLink('a', 'c', {weight: 10});
-      graph.addLink('c', 'd', {weight: 50});
-      graph.addLink('b', 'd', {weight: 10});
-      
-      let pathFinder = path.aStar(graph, {
+      graph.addLink('Flo1', '227-1', {weight: 10});
+      graph.addLink('Flo1', '227-3', {weight: 10});
+      graph.addLink('Flo1', 'Flo2', {weight: 50});
+      graph.addLink('Flo2', '227-2', {weight: 10});
+      graph.addLink('227-1', '227-2', {weight: 10});
+      this.map = graph
+    },
+      // новая фунуция которая будет  потгружать map
+ // graph    
+    graphFine: function () {
+      let path = require('ngraph.path');
+      let pathFinder = path.aStar( this.map, {
         // We tell our pathfinder what should it use as a distance function:
         distance(fromNode, toNode, link) {
           // We don't really care about from/to nodes in this case,
@@ -158,7 +171,7 @@ export default {
           return link.data.weight;
         }
       });
-      let myPath = pathFinder.find('a', 'c');
+      let myPath = pathFinder.find('227-1', '227-2');
       //alert(path)
 
       return myPath
@@ -173,7 +186,8 @@ export default {
   mounted: function () {
     // Вывод канваса в интерфейс
     this.updateCanva()
-    this.graphfun()
+    this.graphSave()
+
  
   }
 }
