@@ -14,10 +14,10 @@
     
   </div>
   <div>
-    <h2>Координаты вашей точки</h2>
-    <a>  {{trilatiratiom2d()}} </a>
+    <h2>Координаты вашей точки</h2> 
+    <a>  {{trilatiratiom2d()}} {{graphfun()}} </a>
+    <!-- {{graphfun()}} -->
   </div>
-  <div id="coords">(координаты покажутся здесь)</div>
    <canvas id="myCanvas"> </canvas>
   
 </div> 
@@ -52,7 +52,8 @@ export default {
 },
   
   methods: {
-   
+
+// Отображение канваса
     updateCanva: function() {
         var canvas = document.getElementById("myCanvas");
         canvas.height = 480;
@@ -123,8 +124,8 @@ export default {
 		// 	this.ctx.moveTo(0, 0);
 		// 	this.ctx.rect(this.w, this.q, 5, 5);
     //   this.ctx.stroke(); 
-    
     // },
+
 // Подсчет координат
     trilatiratiom2d: function () {
       let q = []
@@ -134,37 +135,46 @@ export default {
       var p3 = -2 * this.z.a * w - 2 * this.z.b * q + Math.pow(this.z.a, 2) + Math.pow(this.z.b, 2) - Math.pow(this.z.c, 2)
       this.w = (p1 - p2) / (2 * this.x.b)
       this.q = -(p2 - p3) / (2 * this.z.a)
+      
       return ("координата х = " + this.q + ", координата y = " + this.w)
     },
 
-    graph: function () {
+// Обход графа
+    graphfun: function () {
+      let path = require('ngraph.path');
       let createGraph = require('ngraph.graph');
       let graph = createGraph();
 
       graph.addLink('a', 'b', {weight: 10});
       graph.addLink('a', 'c', {weight: 10});
-      graph.addLink('c', 'd', {weight: 5});
+      graph.addLink('c', 'd', {weight: 50});
       graph.addLink('b', 'd', {weight: 10});
       
-      let pathFinder = aStar(graph, {
-  // We tell our pathfinder what should it use as a distance function:
-      distance(fromNode, toNode, link) {
-    // We don't really care about from/to nodes in this case,
-    // as link.data has all needed information:
-       return link.data.weight;
-     }
+      let pathFinder = path.aStar(graph, {
+        // We tell our pathfinder what should it use as a distance function:
+        distance(fromNode, toNode, link) {
+          // We don't really care about from/to nodes in this case,
+          // as link.data has all needed information:
+          return link.data.weight;
+        }
       });
-      let path = pathFinder.find('a', 'd');
-      return path
-    } 
+      let myPath = pathFinder.find('a', 'c');
+      //alert(path)
+
+      return myPath
+      // alert ("reretr")
+    }, 
+
+
   },
 
 
-
-// Вывод канваса в интерфейс
+// тут функции при запуске страници которые будут выполняться
   mounted: function () {
+    // Вывод канваса в интерфейс
     this.updateCanva()
-    // тут функции при запуске страници которые будут выполняться
+    this.graphfun()
+ 
   }
 }
 
