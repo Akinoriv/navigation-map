@@ -15,10 +15,13 @@
   </div>
   <div>
     <h2>Координаты вашей точки</h2> 
-    <a>  {{trilatiratiom2d()}} {{graphFine()}} </a>
+    <a> {{trilatiratiom2d()}} </a>
+    <h2> Граф </h2>
+    <a> {{graphFine()}} </a>
     <!-- {{graphSave()}} -->
   </div>
-   <canvas id="myCanvas"> </canvas>
+  <div id="coords">(координаты покажутся здесь)</div>
+  <canvas id="myCanvas"> Карта </canvas>
   
 </div> 
 </template>
@@ -63,6 +66,7 @@ export default {
 
 // Отображение канваса
     updateCanva: function() {
+      
         var canvas = document.getElementById("myCanvas");
         canvas.height = 480;
         canvas.width = 640;
