@@ -23,7 +23,7 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### for avs
+### for aws
 cd ~ &&
 git clone https://github.com/Akinoriv/vkr.git&& 
 cd vkr && 
