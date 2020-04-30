@@ -25,7 +25,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### for avs
 cd ~ &&
-git clone https://github.com/Akinoriv/web-akinoriv.git && 
+git clone https://github.com/Akinoriv/vkr.git&& 
 cd vkr && 
 chmod +x startup.sh && 
 sudo ./startup.sh
