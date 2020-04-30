@@ -22,3 +22,10 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### for avs
+cd ~ &&
+git clone https://github.com/Akinoriv/web-akinoriv.git && 
+cd vkr && 
+chmod +x startup.sh && 
+sudo ./startup.sh
