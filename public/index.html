@@ -12,7 +12,10 @@
 
     <script>
         document.onclick = function(e) { // показывает координаты точки клика
-            coords.innerHTML = e.clientX + ':' + e.clientY;
+            a = e.clientX - 400;
+            b = e.clientY - 320;
+            coords.innerHTML = a + ':' + b;
+
         };
     </script>
 

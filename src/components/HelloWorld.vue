@@ -40,25 +40,19 @@ export default {
      y : {
         a: 0,
         b: 0,
-        c: 60
+        c: 70
       },
       z : {
         a: 265,
         b: 0,
-        c: 60
+        c: 40
       },
       q:[],
       w:[],
       ctx: null,  
       
-      map : {}
-      // map : {
-      //   1: [1, 1, 5, 0],
-      //   2: [1, 0, 0, 0],
-      //   3: [1, 0, 0, 0],
-      //   4: [1, 0, 0, 1],
-      //   5: [0, 0, 0, 1],
-      // }
+      map : {},
+      mapCoord : {},
     }
 },
   
@@ -80,9 +74,13 @@ export default {
             ctx.fillRect(0, 0, 650, 400);
             ctx.stroke(); 
         } 
-        //ctx.moveTo(0, 0);
-        ctx.rect(this.w, this.q, 5, 5);
-        //ctx.stroke(); 
+        
+        
+        
+        for (let a in this.mapCoord ) {
+           ctx.rect(this.mapCoord[a].x, this.mapCoord[a].y, 5, 5);
+        }
+        
     },
       
 
@@ -94,7 +92,7 @@ export default {
       var p2 = -2 * this.y.a * w - 2 * this.y.b * q + Math.pow(this.y.a, 2) + Math.pow(this.y.b, 2) - Math.pow(this.y.c, 2)
       var p3 = -2 * this.z.a * w - 2 * this.z.b * q + Math.pow(this.z.a, 2) + Math.pow(this.z.b, 2) - Math.pow(this.z.c, 2)
       this.w = (p1 - p2) / (2 * this.x.b)
-      this.q = -(p2 - p3) / (2 * this.z.a)
+      this.q = -(p2 - p3) / (2 * this.z.a) + 6 
       return ("координата х = " + this.q + ", координата y = " + this.w)
     },
 
@@ -104,17 +102,42 @@ export default {
       let createGraph = require('ngraph.graph');
       let graph = createGraph();
 
-      graph.addLink('Flo1', '227-1', {weight: 10});
-      graph.addLink('Flo1', '227-3', {weight: 10});
+      graph.addLink('Flo1', 'g2271', {weight: 10});
+      graph.addLink('Flo1', 'g2273', {weight: 10});
       graph.addLink('Flo1', 'Flo2', {weight: 50});
-      graph.addLink('Flo2', '227-2', {weight: 10});
+      graph.addLink('Flo2', 'g2272', {weight: 10});
       //graph.addLink('227-1', '227-2', {weight: 10});
-      //this.map = graph
+      this.map = graph
 
+      let coordinates = {
+        'Flo1': {
+          x: 194,
+          y: 87
+        },
+        'Flo2': {
+          x: 230,
+          y: 87
+        },
+        'g2271': {
+          x: 194,
+          y: 100
+        },
+        'g2272': {
+          x: 230,
+          y: 70
+        },
+        'g2273': {
+          x: 194,
+          y: 70
+        },
+      }
+
+      this.mapCoord = coordinates
+      
       return graph
     },
-      // новая фунуция которая будет  потгружать map
- // graph    
+
+// новая фунуция которая будет  потгружать map    
     graphFine: function () {
       var graph = this.graphSave()
 
@@ -127,7 +150,7 @@ export default {
           return link.data.weight;
         }
       });
-      let myPath = pathFinder.find('227-1', '227-2');
+      let myPath = pathFinder.find('g2271', 'g2272');
       //alert(path)
 
       return myPath
