@@ -53,6 +53,7 @@ export default {
       
       map : {},
       mapCoord : {},
+      mapWay : {},
     }
 },
   
@@ -74,12 +75,17 @@ export default {
             ctx.fillRect(0, 0, 650, 400);
             ctx.stroke(); 
         } 
-        
-        
-        
-        for (let a in this.mapCoord ) {
-           ctx.rect(this.mapCoord[a].x, this.mapCoord[a].y, 5, 5);
+        // i = this.mapWay.leght - 1;
+        for (let a in this.mapWay ) {
+          let id = this.mapWay[a].id;
+          let x = this.mapCoord[id].x;
+          let y = this.mapCoord[id].y;
+          ctx.lineTo(x, y);
+          ctx.rect(x-1, y-1, 2, 2);
         }
+        // for (let a in this.mapCoord ) {
+        //    ctx.rect(this.mapCoord[a].x, this.mapCoord[a].y, 5, 5);
+        // }
         
     },
       
@@ -120,7 +126,7 @@ export default {
         },
         'g2271': {
           x: 194,
-          y: 100
+          y: 70
         },
         'g2272': {
           x: 230,
@@ -128,7 +134,7 @@ export default {
         },
         'g2273': {
           x: 194,
-          y: 70
+          y: 100
         },
       }
 
@@ -151,10 +157,10 @@ export default {
         }
       });
       let myPath = pathFinder.find('g2271', 'g2272');
-      //alert(path)
-
-      return myPath
-      // alert ("reretr")
+      this.mapWay = myPath 
+      return this.mapWay
+      
+     
     }, 
 
 
