@@ -35,5 +35,5 @@ sudo npm install &&  ## if killed
   sudo /sbin/swapon /var/swap.1
 npm run build && 
 npm run serve
-  
+  //sudo forever start -c 'serve' dist
 ```
