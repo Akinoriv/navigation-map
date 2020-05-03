@@ -4,20 +4,28 @@
   <div> 
     <h2> Введите расстоение до датчика </h2>
     <label for="P1"> Длина №1 </label>
-    <input required="true" class=" col-sm-1" type="text"  id="P1" placeholder="P1" v-model="x.c" > 
+    <input required="true" class="col-sm-1" type="text"  id="P1" placeholder="P1" v-model="x.c" > 
     <br>
-    <label for="P2" > Длина №2 </label>
-    <input required="true" class="color col-sm-1" type="text"  id="P2" placeholder="P2" v-model="y.c" > 
+    <label for="P2"> Длина №2 </label>
+    <input required="true" class="col-sm-1" type="text"  id="P2" placeholder="P2" v-model="y.c" > 
     <br>
     <label for="P3"> Длина №3 </label> 
-    <input required="true" class=" col-sm-1" type="text"  id="P3" placeholder="P3" v-model="z.c" > 
+    <input required="true" class="col-sm-1" type="text"  id="P3" placeholder="P3" v-model="z.c" > 
     
   </div>
   <div>
     <h2>Координаты вашей точки</h2> 
     <a> {{trilatiratiom2d()}} </a>
+  </div>
+  <div>
+    <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения: g2271, g2272, g2273  </p>
+     <label for="c1"> A </label>
+    <input required="true" class="col-sm-1" type="text"  id="c1" placeholder="c1" v-model="cabinets.a" > 
+    <br>
+    <label for="c2"> B </label> 
+    <input required="true" class="col-sm-1" type="text"  id="c2" placeholder="c2" v-model="cabinets.b" >
     <h2> Граф </h2>
-    <a> {{graphFine()}} </a>
+    <a> {{graphFine()}} </a> 
     <!-- {{graphSave()}} -->
   </div>
   <div id="coords">(координаты покажутся здесь)</div>
@@ -54,6 +62,10 @@ export default {
       map : {},
       mapCoord : {},
       mapWay : {},
+      cabinets : {
+        a : 'g2271',
+        b : 'g2273', 
+              }
     }
 },
   
@@ -72,23 +84,32 @@ export default {
         img.onload = function() {
             var pattern = ctx.createPattern(img, "no-repeat");
             ctx.fillStyle = pattern;
-            ctx.fillRect(0, 0, 650, 400);
-            ctx.stroke(); 
+            ctx.fillRect(0, 0, 640, 480);
+            ctx.stroke(); // для отображения всего поверх картинки
         } 
+
+        // отрисовать заданный маршрут
         // i = this.mapWay.leght - 1;
+        
         for (let a in this.mapWay ) {
+          
           let id = this.mapWay[a].id;
           let x = this.mapCoord[id].x;
           let y = this.mapCoord[id].y;
           ctx.lineTo(x, y);
           ctx.rect(x-1, y-1, 2, 2);
+        
         }
+        // отрисовать все точки на канвас 
         // for (let a in this.mapCoord ) {
-        //    ctx.rect(this.mapCoord[a].x, this.mapCoord[a].y, 5, 5);
+        //  ctx.rect(this.mapCoord[a].x, this.mapCoord[a].y, 5, 5);
         // }
         
     },
-      
+
+      test: function (){
+        return(this.cabinets.b)
+      },
 
 // Подсчет координат
     trilatiratiom2d: function () {
@@ -102,7 +123,7 @@ export default {
       return ("координата х = " + this.q + ", координата y = " + this.w)
     },
 
-// хранение карты save same map
+// Создание и сохранение карты save same map
     graphSave: function () {
       
       let createGraph = require('ngraph.graph');
@@ -113,8 +134,12 @@ export default {
       graph.addLink('Flo1', 'Flo2', {weight: 50});
       graph.addLink('Flo2', 'g2272', {weight: 10});
       //graph.addLink('227-1', '227-2', {weight: 10});
-      this.map = graph
 
+      // сохраняю в джисон связь между точками
+      this.map = graph
+                                               
+
+      // привязываю точки к координатам на кавас
       let coordinates = {
         'Flo1': {
           x: 194,
@@ -156,7 +181,7 @@ export default {
           return link.data.weight;
         }
       });
-      let myPath = pathFinder.find('g2271', 'g2272');
+      let myPath = pathFinder.find(this.cabinets.b, this.cabinets.a);
       this.mapWay = myPath 
       return this.mapWay
       
