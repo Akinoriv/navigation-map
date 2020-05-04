@@ -63,7 +63,7 @@ export default {
       mapCoord : {},
       mapWay : {},
       cabinets : {
-        a : 'g2271',
+        a : 'g2272',
         b : 'g2273', 
               }
     }
@@ -75,8 +75,8 @@ export default {
     updateCanva: function() {
 
       var canvas = document.getElementById("myCanvas");
-      canvas.height = 480;
-      canvas.width = 640;
+      canvas.height = 474;
+      canvas.width = 552;
       var ctx = canvas.getContext("2d");        
       var img = new Image();
       img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/mapG2F.png?raw=true";
@@ -85,7 +85,7 @@ export default {
         
         var pattern = ctx.createPattern(img, "no-repeat");
         ctx.fillStyle = pattern;
-        ctx.fillRect(0, 0, 640, 480);
+        ctx.fillRect(0, 0, 552, 480);
         ctx.stroke(); // для отображения всего поверх картинки
       } 
 
@@ -107,30 +107,16 @@ export default {
       //     updateReadout(loc.x, loc.y);
       //   // Код для нажатия мыши
       // };
-
-        canvas.addEventListener('mousemove', function () {
-          
-        for (let a in this.mapWay ) {
-          let id = this.mapWay[a].id;
-          let x = this.mapCoord[id].x;
-          let y = this.mapCoord[id].y;
-          ctx.lineTo(x, y);
-          ctx.rect(x-1, y-1, 2, 2);
-          ctx.stroke(); 
-        }
-       ctx.stroke(); 
-        });
+      
       // отрисовать заданный маршрут
       // i = this.mapWay.leght - 1;
-      // for (let a in this.mapWay ) {
-      //   let id = this.mapWay[a].id;
-      //   let x = this.mapCoord[id].x;
-      //   let y = this.mapCoord[id].y;
-        
-      //   ctx.lineTo(x, y);
-      //   ctx.rect(x-1, y-1, 2, 2);
-
-      //   }
+      for (let a in this.mapWay ) {
+        let id = this.mapWay[a].id;
+        let x = this.mapCoord[id].x;
+        let y = this.mapCoord[id].y;
+        ctx.lineTo(x, y);
+        ctx.rect(x-1, y-1, 2, 2);
+        }
 
       // отрисовать все точки на канвас 
       // for (let a in this.mapCoord ) {
@@ -174,23 +160,23 @@ export default {
       // привязываю точки к координатам на кавас
       let coordinates = {
         'Flo1': {
-          x: 194,
+          x: 188,
           y: 87
         },
         'Flo2': {
-          x: 230,
+          x: 222,
           y: 87
         },
         'g2271': {
-          x: 194,
+          x: 188,
           y: 70
         },
         'g2272': {
-          x: 230,
+          x: 222,
           y: 70
         },
         'g2273': {
-          x: 194,
+          x: 188,
           y: 100
         },
       }
