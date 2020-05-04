@@ -73,38 +73,70 @@ export default {
 
 // Отображение канваса
     updateCanva: function() {
-      
-        var canvas = document.getElementById("myCanvas");
-        canvas.height = 480;
-        canvas.width = 640;
-        var ctx = canvas.getContext("2d");        
-        var img = new Image();
 
-        img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/map.png?raw=true";
-        img.onload = function() {
-            var pattern = ctx.createPattern(img, "no-repeat");
-            ctx.fillStyle = pattern;
-            ctx.fillRect(0, 0, 640, 480);
-            ctx.stroke(); // для отображения всего поверх картинки
-        } 
+      var canvas = document.getElementById("myCanvas");
+      canvas.height = 480;
+      canvas.width = 640;
+      var ctx = canvas.getContext("2d");        
+      var img = new Image();
+      img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/map.png?raw=true";
 
-        // отрисовать заданный маршрут
-        // i = this.mapWay.leght - 1;
+      img.onload = function() {
         
-        for (let a in this.mapWay ) {
+        var pattern = ctx.createPattern(img, "no-repeat");
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, 640, 480);
+        ctx.stroke(); // для отображения всего поверх картинки
+      } 
+
+      // canvas.addEventListener('mousemove', function (e) {
+      //   let z = window.getComputedStyle(canvas).zoom || 1;     
+      //   var x = e.pageX/z - e.target.offsetLeft,
+      //   y = e.pageY/z - e.target.offsetTop;
+      //   ctx.fillRect(0, 0, 640, 480);
+      //   ctx.beginPath();
+      //   ctx.arc(x,y,5,0,Math.PI*2,true);
+      //   ctx.stroke(); 
+      // });
+
+       // canvas.onmousedown = function (e) {
+      //   var loc = windowToCanvas(canvas, e.clientX, e.clientY);
+      //     drawBackground();
+      //     drawSpritesheet();
+      //     drawGuidelines(loc.x, loc.y);
+      //     updateReadout(loc.x, loc.y);
+      //   // Код для нажатия мыши
+      // };
+
+        canvas.addEventListener('mousemove', function () {
           
+        for (let a in this.mapWay ) {
           let id = this.mapWay[a].id;
           let x = this.mapCoord[id].x;
           let y = this.mapCoord[id].y;
           ctx.lineTo(x, y);
           ctx.rect(x-1, y-1, 2, 2);
-        
+          ctx.stroke(); 
         }
-        // отрисовать все точки на канвас 
-        // for (let a in this.mapCoord ) {
-        //  ctx.rect(this.mapCoord[a].x, this.mapCoord[a].y, 5, 5);
-        // }
+       ctx.stroke(); 
+        });
+      // отрисовать заданный маршрут
+      // i = this.mapWay.leght - 1;
+      // for (let a in this.mapWay ) {
+      //   let id = this.mapWay[a].id;
+      //   let x = this.mapCoord[id].x;
+      //   let y = this.mapCoord[id].y;
         
+      //   ctx.lineTo(x, y);
+      //   ctx.rect(x-1, y-1, 2, 2);
+
+      //   }
+
+      // отрисовать все точки на канвас 
+      // for (let a in this.mapCoord ) {
+      //  ctx.rect(this.mapCoord[a].x, this.mapCoord[a].y, 5, 5);
+      // }
+      
     },
 
       test: function (){
