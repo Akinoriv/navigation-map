@@ -79,7 +79,7 @@ export default {
       canvas.width = 640;
       var ctx = canvas.getContext("2d");        
       var img = new Image();
-      img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/map.png?raw=true";
+      img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/mapG2F.png?raw=true";
 
       img.onload = function() {
         
