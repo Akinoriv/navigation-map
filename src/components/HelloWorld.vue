@@ -20,10 +20,16 @@
   <div>
     <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения: g2271, g2272, g2273  </p>
      <label for="c1"> A </label>
-    <input required="true" class="col-sm-1" type="text"  id="c1" placeholder="c1" v-model="cabinets.a" > 
+    <input required="true" class="col-sm-1" type="text"  id="c1" placeholder="c1" 
+      v-model="cabinets.a"
+      v-on:change="updateCanva()"
+    > 
     <br>
     <label for="c2"> B </label> 
-    <input required="true" class="col-sm-1" type="text"  id="c2" placeholder="c2" v-model="cabinets.b" >
+    <input required="true" class="col-sm-1" type="text"  id="c2" placeholder="c2" 
+      v-model="cabinets.b" 
+      v-on:change="updateCanva()"
+    >
     <h2> Граф </h2>
     <a> {{graphFine()}} </a> 
     <!-- {{graphSave()}} -->
@@ -74,6 +80,8 @@ export default {
 // Отображение канваса
     updateCanva: function() {
 
+      this.graphFine()
+
       var canvas = document.getElementById("myCanvas");
       canvas.height = 474;
       canvas.width = 552;
@@ -89,15 +97,15 @@ export default {
         ctx.stroke(); // для отображения всего поверх картинки
       } 
 
-      // canvas.addEventListener('mousemove', function (e) {
-      //   let z = window.getComputedStyle(canvas).zoom || 1;     
-      //   var x = e.pageX/z - e.target.offsetLeft,
-      //   y = e.pageY/z - e.target.offsetTop;
-      //   ctx.fillRect(0, 0, 640, 480);
-      //   ctx.beginPath();
-      //   ctx.arc(x,y,5,0,Math.PI*2,true);
-      //   ctx.stroke(); 
-      // });
+      canvas.addEventListener('mousemove', function (e) {
+        let z = window.getComputedStyle(canvas).zoom || 1;     
+        var x = e.pageX/z - e.target.offsetLeft,
+        y = e.pageY/z - e.target.offsetTop;
+        ctx.fillRect(0, 0, 640, 480);
+        ctx.beginPath();
+        ctx.arc(x,y,5,0,Math.PI*2,true);
+        ctx.stroke(); 
+      });
 
        // canvas.onmousedown = function (e) {
       //   var loc = windowToCanvas(canvas, e.clientX, e.clientY);
