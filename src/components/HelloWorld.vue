@@ -18,7 +18,7 @@
     <a> {{trilatiratiom2d()}} </a>
   </div>
   <div>
-    <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения: g2271, g2272, g2273  </p>
+    <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения: g227, g2271, g2273, g226, g2261, g2262, g225, g224, g223, </p>
      <label for="c1"> A </label>
     <input required="true" class="col-sm-1" type="text"  id="c1" placeholder="c1" 
       v-model="cabinets.a"
@@ -31,7 +31,7 @@
       v-on:change="updateCanva()"
     >
     <h2> Граф </h2>
-    <a> {{graphFine()}} </a> 
+    <a> </a> 
     <!-- {{graphSave()}} -->
   </div>
   <div id="coords">(координаты покажутся здесь)</div>
@@ -70,7 +70,7 @@ export default {
       mapWay : {},
       cabinets : {
         a : 'g2272',
-        b : 'g2273', 
+        b : 'g227', 
               }
     }
 },
@@ -97,24 +97,15 @@ export default {
         ctx.stroke(); // для отображения всего поверх картинки
       } 
 
-      canvas.addEventListener('mousemove', function (e) {
-        let z = window.getComputedStyle(canvas).zoom || 1;     
-        var x = e.pageX/z - e.target.offsetLeft,
-        y = e.pageY/z - e.target.offsetTop;
-        ctx.fillRect(0, 0, 640, 480);
-        ctx.beginPath();
-        ctx.arc(x,y,5,0,Math.PI*2,true);
-        ctx.stroke(); 
-      });
-
-       // canvas.onmousedown = function (e) {
-      //   var loc = windowToCanvas(canvas, e.clientX, e.clientY);
-      //     drawBackground();
-      //     drawSpritesheet();
-      //     drawGuidelines(loc.x, loc.y);
-      //     updateReadout(loc.x, loc.y);
-      //   // Код для нажатия мыши
-      // };
+      // canvas.addEventListener('mousemove', function (e) {
+      //   let z = window.getComputedStyle(canvas).zoom || 1;     
+      //   var x = e.pageX/z - e.target.offsetLeft,
+      //   y = e.pageY/z - e.target.offsetTop;
+      //   ctx.fillRect(0, 0, 640, 480);
+      //   ctx.beginPath();
+      //   ctx.arc(x,y,2,0,Math.PI*2,true);
+      //   ctx.stroke(); 
+      // });
       
       // отрисовать заданный маршрут
       // i = this.mapWay.leght - 1;
@@ -123,7 +114,7 @@ export default {
         let x = this.mapCoord[id].x;
         let y = this.mapCoord[id].y;
         ctx.lineTo(x, y);
-        ctx.rect(x-1, y-1, 2, 2);
+        //ctx.rect(x, y, 1, 1);
         }
 
       // отрисовать все точки на канвас 
@@ -155,10 +146,23 @@ export default {
       let createGraph = require('ngraph.graph');
       let graph = createGraph();
 
-      graph.addLink('Flo1', 'g2271', {weight: 10});
-      graph.addLink('Flo1', 'g2273', {weight: 10});
-      graph.addLink('Flo1', 'Flo2', {weight: 50});
-      graph.addLink('Flo2', 'g2272', {weight: 10});
+      graph.addLink('Flo1', 'g2272', {weight: 10});
+      graph.addLink('Flo1', 'Flo2', {weight: 10});
+      graph.addLink('Flo2', 'g227', {weight: 10});
+      graph.addLink('Flo2', 'g2271', {weight: 10});
+      graph.addLink('Flo2', 'Flo3', {weight: 10});
+      graph.addLink('Flo3', 'g2262', {weight: 10});
+      graph.addLink('Flo3', 'Flo4', {weight: 10});
+      graph.addLink('Flo4', 'g226', {weight: 10});
+      graph.addLink('Flo4', 'g2261', {weight: 10});
+      graph.addLink('Flo4', 'Flo5', {weight: 10});
+      graph.addLink('Flo5', 'Flo6', {weight: 10});
+      graph.addLink('Flo6', 'g224', {weight: 10});
+      graph.addLink('Flo6', 'g225', {weight: 10});
+      graph.addLink('Flo5', 'Flo7', {weight: 10});
+      graph.addLink('Flo7', 'g223', {weight: 10});
+      graph.addLink('Flo7', 'Flo8', {weight: 10});
+      
       //graph.addLink('227-1', '227-2', {weight: 10});
 
       // сохраняю в джисон связь между точками
@@ -168,11 +172,11 @@ export default {
       // привязываю точки к координатам на кавас
       let coordinates = {
         'Flo1': {
-          x: 188,
+          x: 222,
           y: 87
         },
         'Flo2': {
-          x: 222,
+          x: 188,
           y: 87
         },
         'g2271': {
@@ -183,9 +187,53 @@ export default {
           x: 222,
           y: 70
         },
-        'g2273': {
+        'g227': {
           x: 188,
           y: 100
+        },
+        'Flo3': {
+          x: 152,
+          y: 87
+        },
+        'Flo4': {
+          x: 118,
+          y: 87
+        },
+        'g226': {
+          x: 118,
+          y: 100
+        },
+        'g2261': {
+          x: 118,
+          y: 70
+        },
+        'g2262': {
+          x: 152,
+          y: 70
+        },
+        'Flo5': {
+          x: 87,
+          y: 87
+        },
+        'Flo6': {
+          x: 87,
+          y: 66
+        },
+        'g224': {
+          x: 72,
+          y: 66
+        },
+        'g225': {
+          x: 87,
+          y: 33
+        },
+        'Flo7': {
+          x: 87,
+          y: 124
+        },
+        'g223': {
+          x: 72,
+          y: 124
         },
       }
 
