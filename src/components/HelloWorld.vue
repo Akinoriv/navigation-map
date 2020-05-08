@@ -15,23 +15,23 @@
   </div>
   <div>
     <h2>Координаты вашей точки</h2> 
-    <a> {{trilatiratiom2d()}} </a>
+    <a> {{trilatiratiom2d()}} </a> {{test()}}
   </div>
   <div>
-    <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения: g227, g2271, g2273, g226, g2261, g2262, g225, g224, g223, </p>
+    <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения: Г-227, Г-227-1, Г-227-2, Г-226, Г-226-1, Г-226-2, Г-225, Г-224, Г-223, </p>
      <label for="c1"> A </label>
-    <input required="true" class="col-sm-1" type="text"  id="c1" placeholder="c1" 
+    <input required="true" class="col-sm-2" type="text"  id="c1" placeholder="Кабинет А" 
       v-model="cabinets.a"
       v-on:change="updateCanva()"
     > 
     <br>
     <label for="c2"> B </label> 
-    <input required="true" class="col-sm-1" type="text"  id="c2" placeholder="c2" 
+    <input required="true" class="col-sm-2" type="text"  id="c2" placeholder="Кабинет Б" 
       v-model="cabinets.b" 
       v-on:change="updateCanva()"
     >
     <h2> Граф </h2>
-    <a> </a> 
+    <!-- <a>{{graphFine()}}</a>  -->
     <!-- {{graphSave()}} -->
   </div>
   <div id="coords">(координаты покажутся здесь)</div>
@@ -61,74 +61,101 @@ export default {
         b: 0,
         c: 40
       },
-      q:[],
-      w:[],
+      q: [],
+      w: [],
       ctx: null,  
       
       map : {},
       mapCoord : {},
       mapWay : {},
       cabinets : {
-        a : 'g2272',
-        b : 'g227', 
-              }
+        a : 'Г-227',
+        b : 'Г-223', 
+              },
+      mathFun : {
+        x: [],
+        y: []
+      }
     }
 },
   
   methods: {
 
-// Отображение канваса
+  // Отображение канваса
     updateCanva: function() {
 
-      this.graphFine()
+      var that = this;
+      
+      that.graphFine()
 
       var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");  
       canvas.height = 474;
-      canvas.width = 552;
-      var ctx = canvas.getContext("2d");        
+      canvas.width = 552;     
       var img = new Image();
       img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/mapG2F.png?raw=true";
-
+      // отображение картинки карты
       img.onload = function() {
-        
         var pattern = ctx.createPattern(img, "no-repeat");
         ctx.fillStyle = pattern;
-        ctx.fillRect(0, 0, 552, 480);
+        ctx.fillRect(0, 0, 552, 474);
         ctx.stroke(); // для отображения всего поверх картинки
       } 
-
-      // canvas.addEventListener('mousemove', function (e) {
-      //   let z = window.getComputedStyle(canvas).zoom || 1;     
-      //   var x = e.pageX/z - e.target.offsetLeft,
-      //   y = e.pageY/z - e.target.offsetTop;
-      //   ctx.fillRect(0, 0, 640, 480);
-      //   ctx.beginPath();
-      //   ctx.arc(x,y,2,0,Math.PI*2,true);
-      //   ctx.stroke(); 
-      // });
-      
-      // отрисовать заданный маршрут
-      // i = this.mapWay.leght - 1;
-      for (let a in this.mapWay ) {
-        let id = this.mapWay[a].id;
-        let x = this.mapCoord[id].x;
-        let y = this.mapCoord[id].y;
-        ctx.lineTo(x, y);
-        //ctx.rect(x, y, 1, 1);
-        }
 
       // отрисовать все точки на канвас 
       // for (let a in this.mapCoord ) {
       //  ctx.rect(this.mapCoord[a].x, this.mapCoord[a].y, 5, 5);
       // }
+ 
+      // работает после нажатия на канвас
+      canvas.addEventListener('click', function (e) {
+        var q = e.pageX - e.target.offsetLeft;
+        var w = e.pageY - e.target.offsetTop;
+        ctx.fillRect(0, 0, 552, 474);
+        ctx.beginPath();
+
+        var idMinCab = '';
+        var minD = 10000;
+
+        // ищет ближайшую точку от клика мышки по всему графу
+        for (let a in that.mapCoord ) {
+          //let id = that.mapCoord[a].id;
+          let x = that.mapCoord[a].x;
+          let y = that.mapCoord[a].y;     
+          var XYmin =  Math.sqrt((q - x)*(q - x) + (w - y)*(w - y));
+          // сохраняет ближайшее значение
+          if (XYmin <= minD){
+            minD = XYmin;
+            idMinCab = a;
+          }
+        }
+        // перезапись маршрута
+        that.cabinets.a = idMinCab;
+        that.graphFine();
+        that.mathFun.x = that.mapCoord[idMinCab].x;
+        that.mathFun.y = that.mapCoord[idMinCab].y;
+        // посторение линий от клика мышки до ближайшего графа
+        ctx.moveTo(q, w);
+        ctx.lineTo(that.mathFun.x, that.mathFun.y);
+
+        // построение маршрута 
+        for (let a in that.mapWay ) {
+          let id = that.mapWay[a].id;
+          let x = that.mapCoord[id].x;
+          let y = that.mapCoord[id].y;
+          ctx.lineTo(x, y);
+        }
+        // отрисовка
+        ctx.stroke(); 
+      });
       
     },
 
       test: function (){
-        return(this.cabinets.b)
+        return(this.cabinets.a)
       },
 
-// Подсчет координат
+    // Подсчет координат
     trilatiratiom2d: function () {
       let q = []
       let w = []
@@ -140,30 +167,30 @@ export default {
       return ("координата х = " + this.q + ", координата y = " + this.w)
     },
 
-// Создание и сохранение карты save same map
+    // Создание и сохранение карты save same map
     graphSave: function () {
       
       let createGraph = require('ngraph.graph');
       let graph = createGraph();
-
-      graph.addLink('Flo1', 'g2272', {weight: 10});
+      // связь между графами
+      graph.addLink('Flo1', 'Г-227-2', {weight: 10});
       graph.addLink('Flo1', 'Flo2', {weight: 10});
-      graph.addLink('Flo2', 'g227', {weight: 10});
-      graph.addLink('Flo2', 'g2271', {weight: 10});
+      graph.addLink('Flo2', 'Г-227', {weight: 10});
+      graph.addLink('Flo2', 'Г-227-1', {weight: 10});
       graph.addLink('Flo2', 'Flo3', {weight: 10});
-      graph.addLink('Flo3', 'g2262', {weight: 10});
+      graph.addLink('Flo3', 'Г-226-2', {weight: 10});
       graph.addLink('Flo3', 'Flo4', {weight: 10});
-      graph.addLink('Flo4', 'g226', {weight: 10});
-      graph.addLink('Flo4', 'g2261', {weight: 10});
+      graph.addLink('Flo4', 'Г-226', {weight: 10});
+      graph.addLink('Flo4', 'Г-226-1', {weight: 10});
       graph.addLink('Flo4', 'Flo5', {weight: 10});
       graph.addLink('Flo5', 'Flo6', {weight: 10});
-      graph.addLink('Flo6', 'g224', {weight: 10});
-      graph.addLink('Flo6', 'g225', {weight: 10});
+      graph.addLink('Flo6', 'Г-224', {weight: 10});
+      graph.addLink('Flo6', 'Г-225', {weight: 10});
       graph.addLink('Flo5', 'Flo7', {weight: 10});
-      graph.addLink('Flo7', 'g223', {weight: 10});
+      graph.addLink('Flo7', 'Г-223', {weight: 10});
       graph.addLink('Flo7', 'Flo8', {weight: 10});
       
-      //graph.addLink('227-1', '227-2', {weight: 10});
+      
 
       // сохраняю в джисон связь между точками
       this.map = graph
@@ -179,15 +206,15 @@ export default {
           x: 188,
           y: 87
         },
-        'g2271': {
+        'Г-227-1': {
           x: 188,
           y: 70
         },
-        'g2272': {
+        'Г-227-2': {
           x: 222,
           y: 70
         },
-        'g227': {
+        'Г-227': {
           x: 188,
           y: 100
         },
@@ -199,15 +226,15 @@ export default {
           x: 118,
           y: 87
         },
-        'g226': {
+        'Г-226': {
           x: 118,
           y: 100
         },
-        'g2261': {
+        'Г-226-1': {
           x: 118,
           y: 70
         },
-        'g2262': {
+        'Г-226-2': {
           x: 152,
           y: 70
         },
@@ -219,11 +246,11 @@ export default {
           x: 87,
           y: 66
         },
-        'g224': {
+        'Г-224': {
           x: 72,
           y: 66
         },
-        'g225': {
+        'Г-225': {
           x: 87,
           y: 33
         },
@@ -231,7 +258,7 @@ export default {
           x: 87,
           y: 124
         },
-        'g223': {
+        'Г-223': {
           x: 72,
           y: 124
         },
@@ -242,10 +269,11 @@ export default {
       return graph
     },
 
-// новая фунуция которая будет  потгружать map    
+    // новая фунуция которая будет  потгружать map   
+    // строит граф  
     graphFine: function () {
       var graph = this.graphSave()
-
+      // библиотечка
       let path = require('ngraph.path');
       let pathFinder = path.aStar( graph, {
         // We tell our pathfinder what should it use as a distance function:
@@ -255,13 +283,11 @@ export default {
           return link.data.weight;
         }
       });
+      // от - до строит маршрут
       let myPath = pathFinder.find(this.cabinets.b, this.cabinets.a);
       this.mapWay = myPath 
       return this.mapWay
-      
-     
-    }, 
-
+    },
 
   },
 
