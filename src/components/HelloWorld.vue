@@ -18,7 +18,7 @@
     <a> {{trilatiratiom2d()}} </a> 
   </div>
   <div>
-    <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения: Г-227, Г-227-1, Г-227-2, Г-226, Г-226-1, Г-226-2, Г-225, Г-224, Г-223, </p>
+    <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения:с Г-213 по Г-227-2 </p>
      <label for="c1"> A </label>
     <input required="true" class="col-sm-2" type="text"  id="c1" placeholder="Кабинет А" 
       v-model="cabinets.a"
@@ -30,12 +30,12 @@
       v-model="cabinets.b" 
       v-on:change="updateCanva()"
     >
-    <h2> Граф </h2>
-    <!-- <a>{{graphFine()}}</a>  -->
-    <!-- {{graphSave()}} -->
+    <!-- <h2> Граф </h2>
+    <a>{{graphFine()}}</a> 
+    {{graphSave()}} -->
   </div>
-  <div id="coords">(координаты покажутся здесь)</div>
-  <canvas id="myCanvas"> Карта </canvas>
+  <div id="coords">(координаты мышки)</div>
+  <canvas id="myCanvas"> Обновите браузер </canvas>
   
 </div> 
 </template>
@@ -69,8 +69,8 @@ export default {
       mapCoord : {},
       mapWay : {},
       cabinets : {
-        a : 'Г-227f',
-        b : 'Г-223f', 
+        a : 'Г-227',
+        b : 'Г-223', 
               },
       mathFun : {
         x: [],
