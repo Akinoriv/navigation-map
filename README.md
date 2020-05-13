@@ -25,7 +25,7 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### for aws
-``` 
+
 Запусть на новом сервере:
 ```
 cd ~ &&
