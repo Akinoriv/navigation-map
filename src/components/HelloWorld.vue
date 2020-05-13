@@ -15,7 +15,7 @@
   </div>
   <div>
     <h2>Координаты вашей точки</h2> 
-    <a> {{trilatiratiom2d()}} </a> {{test()}}
+    <a> {{trilatiratiom2d()}} </a> 
   </div>
   <div>
     <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения: Г-227, Г-227-1, Г-227-2, Г-226, Г-226-1, Г-226-2, Г-225, Г-224, Г-223, </p>
@@ -69,8 +69,8 @@ export default {
       mapCoord : {},
       mapWay : {},
       cabinets : {
-        a : 'Г-227',
-        b : 'Г-223', 
+        a : 'Г-227f',
+        b : 'Г-223f', 
               },
       mathFun : {
         x: [],
@@ -101,11 +101,6 @@ export default {
         ctx.fillRect(0, 0, 552, 474);
         ctx.stroke(); // для отображения всего поверх картинки
       } 
-
-      // отрисовать все точки на канвас 
-      // for (let a in this.mapCoord ) {
-      //  ctx.rect(this.mapCoord[a].x, this.mapCoord[a].y, 5, 5);
-      // }
  
       // работает после нажатия на канвас
       canvas.addEventListener('click', function (e) {
@@ -113,6 +108,12 @@ export default {
         var w = e.pageY - e.target.offsetTop;
         ctx.fillRect(0, 0, 552, 474);
         ctx.beginPath();
+
+        // ctx.rect(q, w, 5, 5);
+        //  // отрисовать все точки на канвас 
+        // for (let a in that.mapCoord ) {
+        // ctx.rect(that.mapCoord[a].x, that.mapCoord[a].y, 5, 5);
+        // }
 
         var idMinCab = '';
         var minD = 10000;
@@ -173,24 +174,84 @@ export default {
       let createGraph = require('ngraph.graph');
       let graph = createGraph();
       // связь между графами
-      graph.addLink('Flo1', 'Г-227-2', {weight: 10});
+      graph.addLink('Flo1', 'Г-227-2f', {weight: 10});
+      graph.addLink('Г-227-2f', 'Г-227-2', {weight: 10});
+
       graph.addLink('Flo1', 'Flo2', {weight: 10});
-      graph.addLink('Flo2', 'Г-227', {weight: 10});
-      graph.addLink('Flo2', 'Г-227-1', {weight: 10});
+      graph.addLink('Flo2', 'Г-227f', {weight: 10});
+      graph.addLink('Г-227f', 'Г-227', {weight: 10});
+      graph.addLink('Flo2', 'Г-227-1f', {weight: 10});
+      graph.addLink('Г-227-1f', 'Г-227-1', {weight: 10});
+
       graph.addLink('Flo2', 'Flo3', {weight: 10});
-      graph.addLink('Flo3', 'Г-226-2', {weight: 10});
+      graph.addLink('Flo3', 'Г-226-2f', {weight: 10});
+      graph.addLink('Г-226-2f', 'Г-226-2', {weight: 10});
+
       graph.addLink('Flo3', 'Flo4', {weight: 10});
-      graph.addLink('Flo4', 'Г-226', {weight: 10});
-      graph.addLink('Flo4', 'Г-226-1', {weight: 10});
+      graph.addLink('Flo4', 'Г-226-1f', {weight: 10});
+      graph.addLink('Г-226-1f', 'Г-226-1', {weight: 10});
+      graph.addLink('Flo4', 'Г-226f', {weight: 10});
+      graph.addLink('Г-226f', 'Г-226', {weight: 10});
+
       graph.addLink('Flo4', 'Flo5', {weight: 10});
+
       graph.addLink('Flo5', 'Flo6', {weight: 10});
-      graph.addLink('Flo6', 'Г-224', {weight: 10});
-      graph.addLink('Flo6', 'Г-225', {weight: 10});
+      graph.addLink('Flo6', 'Г-224f', {weight: 10});
+      graph.addLink('Г-224f', 'Г-224', {weight: 10});
+      graph.addLink('Flo6', 'Г-225f', {weight: 10});
+      graph.addLink('Г-225f', 'Г-225', {weight: 10});
+      
       graph.addLink('Flo5', 'Flo7', {weight: 10});
-      graph.addLink('Flo7', 'Г-223', {weight: 10});
+      graph.addLink('Flo7', 'Г-223f', {weight: 10});
+      graph.addLink('Г-223f', 'Г-223', {weight: 10});
+
       graph.addLink('Flo7', 'Flo8', {weight: 10});
+      graph.addLink('Flo8', 'Г-222f', {weight: 10});
+      graph.addLink('Г-222f', 'Г-222', {weight: 10});
+
+      graph.addLink('Flo8', 'Flo9', {weight: 10});
+      graph.addLink('Flo9', 'Г-221f', {weight: 10});
+      graph.addLink('Г-221f', 'Г-221', {weight: 10});
+
+      graph.addLink('Flo9', 'Flo10', {weight: 10});
+      graph.addLink('Flo10', 'Г-220f', {weight: 10});
+      graph.addLink('Г-220f', 'Г-220', {weight: 10});
+
+      graph.addLink('Flo10', 'Flo11', {weight: 10});
+      graph.addLink('Flo11', 'Г-219f', {weight: 10});
+      graph.addLink('Г-219f', 'Г-219', {weight: 10});
+
+      graph.addLink('Flo11', 'Flo12', {weight: 10});
+      graph.addLink('Flo12', 'Г-218f', {weight: 10});
+      graph.addLink('Г-218f', 'Г-218', {weight: 10});
+
+      graph.addLink('Flo12', 'Flo13', {weight: 10});
+      graph.addLink('Flo13', 'Г-217f', {weight: 10});
+      graph.addLink('Г-217f', 'Г-217', {weight: 10});
+
+      graph.addLink('Flo13', 'Flo14', {weight: 10});
+      graph.addLink('Flo14', 'Г-215f', {weight: 10});
+      graph.addLink('Г-215f', 'Г-215', {weight: 10});
+      graph.addLink('Г-215f', 'Г-216f', {weight: 10});
+      graph.addLink('Г-216f', 'Г-216', {weight: 10});
+      graph.addLink('Г-215f', 'Г-214f', {weight: 10});
+      graph.addLink('Г-214f', 'Г-214', {weight: 10});
+      graph.addLink('Г-216f', 'Г-214f', {weight: 12});
+      graph.addLink('Г-215', 'Г-214f', {weight: 10});
+      graph.addLink('Г-215', 'Г-216f', {weight: 10});
       
+      graph.addLink('Flo14', 'Flo15', {weight: 10});
+      graph.addLink('Flo15', 'Г-213f', {weight: 10});
+      graph.addLink('Г-2173', 'Г-213', {weight: 10});
       
+      graph.addLink('Flo15', 'Flo16', {weight: 10});
+      graph.addLink('Flo16', 'Г-213f', {weight: 10});
+      graph.addLink('Г-2173', 'Г-213', {weight: 10});
+
+      graph.addLink('Flo16', 'Flo17', {weight: 10});
+      graph.addLink('Flo17', 'Г-229f', {weight: 10});
+      graph.addLink('Г-2293', 'Г-229', {weight: 10});
+
 
       // сохраняю в джисон связь между точками
       this.map = graph
@@ -199,68 +260,240 @@ export default {
       // привязываю точки к координатам на кавас
       let coordinates = {
         'Flo1': {
-          x: 222,
-          y: 87
+          x: 220,
+          y: 83
         },
-        'Flo2': {
-          x: 188,
-          y: 87
-        },
-        'Г-227-1': {
-          x: 188,
-          y: 70
+        'Г-227-2f': {
+          x: 220,
+          y: 68
         },
         'Г-227-2': {
-          x: 222,
-          y: 70
+          x: 220,
+          y: 35
+        },
+
+        'Flo2': {
+          x: 185,
+          y: 83
+        },
+        'Г-227f': {
+          x: 185,
+          y: 98
         },
         'Г-227': {
-          x: 188,
-          y: 100
+          x: 205,
+          y: 115
         },
+        'Г-227-1f': {
+          x: 185,
+          y: 68
+        },
+        'Г-227-1': {
+          x: 185,
+          y: 35
+        },
+
         'Flo3': {
-          x: 152,
-          y: 87
+          x: 150,
+          y: 83
         },
-        'Flo4': {
-          x: 118,
-          y: 87
-        },
-        'Г-226': {
-          x: 118,
-          y: 100
-        },
-        'Г-226-1': {
-          x: 118,
-          y: 70
+        'Г-226-2f': {
+          x: 150,
+          y: 68
         },
         'Г-226-2': {
-          x: 152,
-          y: 70
+          x: 150,
+          y: 35
         },
+
+        'Flo4': {
+          x: 116,
+          y: 83
+        },
+        'Г-226f': {
+          x: 115,
+          y: 98
+        },
+        'Г-226': {
+          x: 137,
+          y: 115
+        },
+        'Г-226-1f': {
+          x: 116,
+          y: 68
+        },
+        'Г-226-1': {
+          x: 115,
+          y: 35
+        },
+        
         'Flo5': {
-          x: 87,
+          x: 85,
           y: 87
         },
+
         'Flo6': {
-          x: 87,
-          y: 66
+          x: 85,
+          y: 65
+        },
+        'Г-224f': {
+          x: 71,
+          y: 65
         },
         'Г-224': {
-          x: 72,
-          y: 66
+          x: 32,
+          y: 65
         },
-        'Г-225': {
-          x: 87,
+        'Г-225f': {
+          x: 85,
           y: 33
         },
-        'Flo7': {
-          x: 87,
-          y: 124
+         'Г-225': {
+          x: 70,
+          y: 13
         },
-        'Г-223': {
+
+        'Flo7': {
+          x: 85,
+          y: 120
+        },
+        'Г-223f': {
           x: 72,
-          y: 124
+          y: 120
+        },
+         'Г-223': {
+          x: 32,
+          y: 118
+        },
+
+         'Flo8': {
+          x: 85,
+          y: 178
+        },
+         'Г-222f': {
+          x: 72,
+          y: 178
+        },
+         'Г-222': {
+          x: 34,
+          y: 178
+        },
+
+         'Flo9': {
+          x: 85,
+          y: 203
+        },
+        'Г-221f': {
+          x: 72,
+          y: 203
+        },
+        'Г-221': {
+          x: 34,
+          y: 203
+        },
+
+         'Flo10': {
+          x: 85,
+          y: 235
+        },
+        'Г-220f': {
+          x: 72,
+          y: 235
+        },
+        'Г-220': {
+          x: 34,
+          y: 235
+        },
+
+         'Flo11': {
+          x: 85,
+          y: 264
+        },
+        'Г-219f': {
+          x: 72,
+          y: 264
+        },
+        'Г-219': {
+          x: 34,
+          y: 264
+        },
+
+         'Flo12': {
+          x: 85,
+          y: 293
+        },
+         'Г-218f': {
+          x: 72,
+          y: 293
+        },
+        'Г-218': {
+          x: 34,
+          y: 293
+        },
+
+         'Flo13': {
+          x: 85,
+          y: 324
+        },
+         'Г-217f': {
+          x: 72,
+          y: 324
+        },
+        'Г-217': {
+          x: 34,
+          y: 324
+        },
+
+         'Flo14': {
+          x: 85,
+          y: 378
+        },
+         'Г-215f': {
+          x: 72,
+          y: 378
+        },
+        'Г-215': {
+          x: 34,
+          y: 376
+        },
+        'Г-216f': {
+          x: 53,
+          y: 364
+        },
+        'Г-216': {
+          x: 34,
+          y: 352
+        },
+        'Г-214f': {
+          x: 53,
+          y: 391
+        },
+        'Г-214': {
+          x: 34,
+          y: 401
+        },
+
+         'Flo15': {
+          x: 85,
+          y: 401
+        },
+        'Г-213f': {
+          x: 85,
+          y: 418
+        },
+        'Г-213': {
+          x: 52,
+          y: 444
+        },
+
+         'Flo16': {
+          x: 116,
+          y: 401
+        },
+
+         'Flo17': {
+          x: 150,
+          y: 401
         },
       }
 
