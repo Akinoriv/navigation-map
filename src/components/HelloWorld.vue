@@ -138,6 +138,17 @@ export default {
         // посторение линий от клика мышки до ближайшего графа
         ctx.moveTo(q, w);
         ctx.lineTo(that.mathFun.x, that.mathFun.y);
+        ctx.lineWidth = 5;
+        ctx.lineCap = 'round';
+        var gradient = ctx.createLinearGradient(0, 0, 460, 0)
+        gradient.addColorStop(0.00, 'red')
+        gradient.addColorStop(0.14, 'orange')
+        gradient.addColorStop(0.28, 'yellow')
+        gradient.addColorStop(0.42, 'green')
+        gradient.addColorStop(0.56, 'blue')
+        gradient.addColorStop(0.70, 'indigo')
+        gradient.addColorStop(0.84, 'violet')
+        ctx.strokeStyle = gradient; 
 
         // построение маршрута 
         for (let a in that.mapWay ) {
@@ -342,6 +353,8 @@ export default {
       graph.addLink('Flo30', 'Flo31', {weight: 10});
       graph.addLink('Flo31', 'Г-202f', {weight: 10});
       graph.addLink('Г-202f', 'Г-202', {weight: 10});
+      graph.addLink('Г-202', 'Г-202p', {weight: 10});
+      graph.addLink('Г-202f', 'Г-202p', {weight: 10});
       graph.addLink('Flo31', 'Г-202-1f', {weight: 10});
       graph.addLink('Г-202-1f', 'Г-202-1', {weight: 10});
 
