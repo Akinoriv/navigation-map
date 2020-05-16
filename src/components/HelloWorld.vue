@@ -242,15 +242,108 @@ export default {
       
       graph.addLink('Flo14', 'Flo15', {weight: 10});
       graph.addLink('Flo15', 'Г-213f', {weight: 10});
-      graph.addLink('Г-2173', 'Г-213', {weight: 10});
+      graph.addLink('Г-213f', 'Г-213', {weight: 10});
       
       graph.addLink('Flo15', 'Flo16', {weight: 10});
-      graph.addLink('Flo16', 'Г-213f', {weight: 10});
-      graph.addLink('Г-2173', 'Г-213', {weight: 10});
+      graph.addLink('Flo16', 'Г-228f', {weight: 10});
+      graph.addLink('Г-228f', 'Г-228', {weight: 10});
+      graph.addLink('Flo16', 'Г-212f', {weight: 10});
+      graph.addLink('Г-212f', 'Г-212p', {weight: 10});
+      graph.addLink('Г-212p', 'Г-212-1f', {weight: 10});
+      graph.addLink('Г-212-1f', 'Г-212-1', {weight: 10});
 
       graph.addLink('Flo16', 'Flo17', {weight: 10});
       graph.addLink('Flo17', 'Г-229f', {weight: 10});
-      graph.addLink('Г-2293', 'Г-229', {weight: 10});
+      graph.addLink('Г-229f', 'Г-229', {weight: 10});
+
+      graph.addLink('Flo17', 'Flo18', {weight: 10});
+      graph.addLink('Flo18', 'Г-230f', {weight: 10});
+      graph.addLink('Г-230f', 'Г-230', {weight: 10});
+
+      graph.addLink('Flo18', 'Flo19', {weight: 10});
+      graph.addLink('Flo19', 'Г-231f', {weight: 10});
+      graph.addLink('Г-231f', 'Г-231', {weight: 10});
+      graph.addLink('Flo19', 'Г-212f2', {weight: 10});
+      graph.addLink('Г-212f2', 'Г-212', {weight: 10});
+      graph.addLink('Г-212', 'Г-212p', {weight: 10});
+      graph.addLink('Г-212f2', 'Г-212-1f', {weight: 10});
+
+      graph.addLink('Flo19', 'Flo20', {weight: 10});
+      graph.addLink('Flo20', 'Г-211f', {weight: 10});
+      graph.addLink('Г-211f', 'Г-211', {weight: 10});
+      graph.addLink('Г-211f', 'Г-211-1f', {weight: 10});
+      graph.addLink('Г-211-1f', 'Г-211-1', {weight: 10});
+
+      graph.addLink('Flo20', 'Flo21', {weight: 10});
+
+      graph.addLink('Flo21', 'Flo22', {weight: 10});
+
+      graph.addLink('Flo22', 'Flo23', {weight: 10});
+      graph.addLink('Flo23', 'Г-210f', {weight: 10});
+      graph.addLink('Г-210f', 'Г-210', {weight: 10});
+      graph.addLink('Г-210f', 'Г-210-1f', {weight: 10});
+      graph.addLink('Г-210-1f', 'Г-210-1', {weight: 10});
+
+      graph.addLink('Flo23', 'Flo24', {weight: 10});
+      graph.addLink('Flo24', 'Г-209f', {weight: 10});
+      graph.addLink('Г-209f', 'Г-209', {weight: 10});
+
+      graph.addLink('Flo24', 'Flo25', {weight: 10});
+      graph.addLink('Flo25', 'Г-208f', {weight: 10});
+      graph.addLink('Г-208f', 'Г-208', {weight: 10});
+      graph.addLink('Г-208', 'Г-208-1f', {weight: 10});
+      graph.addLink('Г-208f', 'Г-208-1f', {weight: 10});
+      graph.addLink('Г-208-1f', 'Г-208-1', {weight: 10});
+
+      graph.addLink('Flo25', 'Flo26', {weight: 10});
+      graph.addLink('Flo26', 'Г-207f', {weight: 10});
+      graph.addLink('Г-207f', 'Г-207', {weight: 10});
+      graph.addLink('Г-207', 'Г-207-1f', {weight: 10});
+      graph.addLink('Г-207f', 'Г-207-1f', {weight: 10});
+      graph.addLink('Г-207-1f', 'Г-207-1', {weight: 10});
+
+      graph.addLink('Flo26', 'Flo27', {weight: 10});
+      graph.addLink('Flo27', 'Г-206f', {weight: 10});
+      graph.addLink('Г-206f', 'Г-206', {weight: 10});
+
+      graph.addLink('Flo27', 'Flo28', {weight: 10});
+      graph.addLink('Flo28', 'Г-205f', {weight: 10});
+      graph.addLink('Г-205f', 'Г-205', {weight: 10});
+      graph.addLink('Г-205', 'Г-205-1f', {weight: 10});
+      graph.addLink('Г-205f', 'Г-205-1f', {weight: 10});
+      graph.addLink('Г-205-1f', 'Г-205-1', {weight: 10});
+
+      graph.addLink('Flo28', 'Flo29', {weight: 10});
+      graph.addLink('Flo29', 'Г-204f', {weight: 10});
+      graph.addLink('Г-204f', 'Г-204', {weight: 10});
+
+      graph.addLink('Flo29', 'Flo30', {weight: 10});
+      graph.addLink('Flo30', 'Г-203f', {weight: 10});
+      graph.addLink('Г-203f', 'Г-203', {weight: 10});
+
+      graph.addLink('Flo30', 'Г-201f', {weight: 10});
+      graph.addLink('Г-201f', 'Г-201', {weight: 10});
+
+      graph.addLink('Г-201', 'Г-201-3f', {weight: 10});
+      graph.addLink('Г-201f', 'Г-201-3f', {weight: 10});
+      graph.addLink('Г-201-3f', 'Г-201-3', {weight: 10});
+
+      graph.addLink('Г-201', 'Г-201-2f', {weight: 10});
+      graph.addLink('Г-201-2f', 'Г-201-2', {weight: 10});
+
+      graph.addLink('Г-201', 'Г-201-4f', {weight: 10});
+      graph.addLink('Г-201-4f', 'Г-201-4', {weight: 10});
+      graph.addLink('Г-201-4f', 'Г-201-2f', {weight: 10});
+
+      graph.addLink('Г-201-4f', 'Г-201-1f', {weight: 10});
+      graph.addLink('Г-201-4', 'Г-201-1f', {weight: 10});
+      graph.addLink('Г-201-1f', 'Г-201-1', {weight: 10});
+
+      graph.addLink('Flo30', 'Flo31', {weight: 10});
+      graph.addLink('Flo31', 'Г-202f', {weight: 10});
+      graph.addLink('Г-202f', 'Г-202', {weight: 10});
+      graph.addLink('Flo31', 'Г-202-1f', {weight: 10});
+      graph.addLink('Г-202-1f', 'Г-202-1', {weight: 10});
 
 
       // сохраняю в джисон связь между точками
@@ -479,7 +572,7 @@ export default {
         },
         'Г-213f': {
           x: 85,
-          y: 418
+          y: 416
         },
         'Г-213': {
           x: 52,
@@ -490,10 +583,309 @@ export default {
           x: 116,
           y: 401
         },
+          'Г-228f': {
+          x: 116,
+          y: 387
+        },
+         'Г-228': {
+          x: 116,
+          y: 360
+        },
+        'Г-212f': {
+          x: 116,
+          y: 416
+        },
+        'Г-212p': {
+          x: 116,
+          y: 429
+        },
+         'Г-212-1f': {
+          x: 118,
+          y: 442
+        },
+        'Г-212-1': {
+          x: 137,
+          y: 457
+        },
 
          'Flo17': {
           x: 150,
           y: 401
+        },
+        'Г-229f': {
+          x: 150,
+          y: 387
+        },
+         'Г-229': {
+          x: 150,
+          y: 360
+        },
+
+         'Flo18': {
+          x: 186,
+          y: 401
+        },
+        'Г-230f': {
+          x: 186,
+          y: 387
+        },
+         'Г-230': {
+          x: 186,
+          y: 360
+        },
+
+         'Flo19': {
+          x: 229,
+          y: 401
+        },
+        'Г-231f': {
+          x: 229,
+          y: 387
+        },
+         'Г-231': {
+          x: 229,
+          y: 360
+        },
+        'Г-212f2': {
+          x: 228,
+          y: 416
+        },
+         'Г-212': {
+          x: 200,
+          y: 444
+        },
+
+         'Flo20': {
+          x: 284,
+          y: 401
+        },
+        'Г-211f': {
+          x: 284,
+          y: 417
+        },
+         'Г-211': {
+          x: 274,
+          y: 429
+        },
+        'Г-211-1f': {
+          x: 274,
+          y: 443
+        },
+         'Г-211-1': {
+          x: 274,
+          y: 457
+        },
+
+         'Flo21': {
+          x: 310,
+          y: 401
+        },
+
+         'Flo22': {
+          x: 345,
+          y: 401
+        },
+
+         'Flo23': {
+          x: 370,
+          y: 401
+        },
+         'Г-210f': {
+          x: 370,
+          y: 417
+        },
+         'Г-210': {
+          x: 368,
+          y: 449
+        }, // установить длину 15
+        'Г-210-1f': {
+          x: 347,
+          y: 432
+        },
+         'Г-210-1': {
+          x: 323,
+          y: 445
+        },
+
+         'Flo24': {
+          x: 401,
+          y: 401
+        },
+        'Г-209f': {
+          x: 401,
+          y: 417
+        },
+         'Г-209': {
+          x: 401,
+          y: 449
+        },
+
+         'Flo25': {
+          x: 461,
+          y: 401
+        },
+         'Г-208f': {
+          x: 461,
+          y: 417
+        },
+         'Г-208': {
+          x: 498,
+          y: 443
+        },
+         'Г-208-1f': {
+          x: 446,
+          y: 435
+        },
+         'Г-208-1': {
+          x: 432,
+          y: 449
+        },
+
+        'Flo26': {
+          x: 461,
+          y: 350
+        },
+        'Г-207f': {
+          x: 476,
+          y: 349
+        },
+         'Г-207': {
+          x: 512,
+          y: 361
+        },
+         'Г-207-1f': {
+          x: 493,
+          y: 385
+        },
+         'Г-207-1': {
+          x: 512,
+          y: 401
+        },
+
+        'Flo27': {
+          x: 461,
+          y: 310
+        },
+        'Г-206f': {
+          x: 476,
+          y: 310
+        },
+         'Г-206': {
+          x: 512,
+          y: 310
+        },
+
+        'Flo28': {
+          x: 461,
+          y: 233
+        },
+        'Г-205f': {
+          x: 476,
+          y: 233
+        },
+         'Г-205': {
+          x: 512,
+          y: 233
+        },
+         'Г-205-1f': {
+          x: 493,
+          y: 247
+        },
+         'Г-205-1': {
+          x: 512,
+          y: 268
+        },
+
+        'Flo29': {
+          x: 461,
+          y: 199
+        },
+         'Г-204f': {
+          x: 476,
+          y: 199
+        },
+         'Г-204': {
+          x: 512,
+          y: 199
+        },
+
+        'Flo31': {
+          x: 461,
+          y: 81
+        },
+         'Г-202f': {
+          x: 476,
+          y: 81
+        },
+         'Г-202': {
+          x: 496,
+          y: 36
+        },
+        'Г-202p': {
+          x: 511,
+          y: 77
+        },
+         'Г-202-1f': {
+          x: 461,
+          y: 66
+        },
+         'Г-202-1': {
+          x: 461,
+          y: 35
+        },
+
+
+        'Flo30': {
+          x: 461,
+          y: 116
+        },
+         'Г-203f': {
+          x: 476,
+          y: 116
+        },
+         'Г-203': {
+          x: 512,
+          y: 116
+        },
+         'Г-201f': {
+          x: 447,
+          y: 116
+        },
+         'Г-201': {
+          x: 382,
+          y: 116
+        },
+        'Г-201-1f': {
+          x: 291,
+          y: 97
+        },
+         'Г-201-1': {
+          x: 275,
+          y: 51
+        },
+        'Г-201-2f': {
+          x: 365,
+          y: 97
+        },
+         'Г-201-2': {
+          x: 347,
+          y: 51
+        },
+        'Г-201-3f': {
+          x: 427,
+          y: 97
+        },
+         'Г-201-3': {
+          x: 414,
+          y: 51
+        },
+        'Г-201-4f': {
+          x: 308,
+          y: 116
+        },
+         'Г-201-4': {
+          x: 274,
+          y: 116
         },
       }
 
