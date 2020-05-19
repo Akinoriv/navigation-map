@@ -1,8 +1,9 @@
 <template>
 <div class="container">  
-  <h1>Добро пожаловать в локальный навигатор</h1>
-  <div> 
-    <h2> Введите расстоение до датчика </h2>
+  <h1>Добро пожаловать в навигатор по корпусу Г - 2 этаж </h1>
+  <h3> Расчет расстояния до ближайших датчиков </h3>
+  <div align="right" class="col-sm-7"> 
+    
     <label for="P1"> Длина №1 </label>
     <input required="true" class="col-sm-1" type="text"  id="P1" placeholder="P1" v-model="lengthForSens[0]" > 
     <br>
@@ -13,20 +14,21 @@
     <input required="true" class="col-sm-1" type="text"  id="P3" placeholder="P3" v-model="lengthForSens[2]" > 
     
   </div>
-  <div>
+  <!-- <div>
     <h2>Координаты вашей точки</h2> 
-    <a> {{trilatiratiom2d()}}</a> {{test()}}
-  </div>
-  <div>
-    <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения:с Г-213 по Г-227-2 </p>
-     <label for="c1"> A </label>
-    <input required="true" class="col-sm-2" type="text"  id="c1" placeholder="Кабинет А" 
+    <a> {{trilatiratiom2d()}}</a> 
+  </div> -->
+  <h3> Введите номер кабинета, для постоенния маршрута </h3>
+  <div align="right" class="col-sm-9">
+   
+    <label for="c1" align="right" > Откуда: кликните на карте или впишите  </label>
+    <input required="true" align="right"  class="col-sm-2" type="text"  id="c1" placeholder="Кабинет А" 
       v-model="cabinets.a"
       v-on:change="updateCanva()"
     > 
     <br>
-    <label for="c2"> B </label> 
-    <input required="true" class="col-sm-2" type="text"  id="c2" placeholder="Кабинет Б" 
+    <label for="c2" align="right" > Куда: впишите номер кабинета </label> 
+    <input required="true" align="right"  class="col-sm-2" type="text"  id="c2" placeholder="Кабинет Б" 
       v-model="cabinets.b" 
       v-on:change="updateCanva()"
     >
@@ -34,10 +36,13 @@
     <a>{{graphFine()}}</a> 
     {{graphSave()}} -->
   </div>
-  <div id="coords">(координаты мышки)</div>
-  <canvas id="myCanvas"> Обновите браузер </canvas>
-  
+  <div>
+    <!-- <div id="coords">(координаты мышки)</div> -->
+    <canvas id="myCanvas"> Обновите браузер </canvas>
+  </div>
 </div> 
+
+
 </template>
 
 <script>

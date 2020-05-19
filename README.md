@@ -42,9 +42,9 @@ sudo forever start -c 'serve' dist
 
 Запустить обновления:
 ```
-cd vkr
-git pull
-forever stopall (убили все циклы)
-sudo npm run build 
+cd vkr &&
+git pull &&
+forever stopall &&
+sudo npm run build &&
 sudo forever start -c 'serve' dist
 ```
