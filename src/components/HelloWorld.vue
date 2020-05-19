@@ -210,7 +210,7 @@ export default {
       
       let createGraph = require('ngraph.graph');
       let graph = createGraph();
-      // связь между графами
+// связь между графами
       graph.addLink('Flo1', 'Г-227-2f', {weight: 10});
       graph.addLink('Г-227-2f', 'Г-227-2', {weight: 10});
 
@@ -239,10 +239,14 @@ export default {
       graph.addLink('Г-225f', 'Г-225', {weight: 10});
       
       graph.addLink('Flo5', 'Flo7', {weight: 10});
+      graph.addLink('Flo7', 'stairs1f', {weight: 10});
       graph.addLink('Flo7', 'Г-223f', {weight: 10});
       graph.addLink('Г-223f', 'Г-223', {weight: 10});
 
+      graph.addLink('stairs1', 'stairs1f', {weight: 10});
+
       graph.addLink('Flo7', 'Flo8', {weight: 10});
+      graph.addLink('Flo8', 'stairs1f', {weight: 10});
       graph.addLink('Flo8', 'Г-222f', {weight: 10});
       graph.addLink('Г-222f', 'Г-222', {weight: 10});
 
@@ -307,12 +311,14 @@ export default {
 
       graph.addLink('Flo19', 'Flo20', {weight: 10});
       graph.addLink('Flo20', 'Г-211f', {weight: 10});
+      graph.addLink('Flo20', 'stairs3', {weight: 10});
       graph.addLink('Г-211f', 'Г-211', {weight: 10});
       graph.addLink('Г-211f', 'Г-211-1f', {weight: 10});
       graph.addLink('Г-211-1f', 'Г-211-1', {weight: 10});
 
       graph.addLink('Flo20', 'Flo21', {weight: 10});
 
+      graph.addLink('Flo21', 'wc', {weight: 10});
       graph.addLink('Flo21', 'Flo22', {weight: 10});
 
       graph.addLink('Flo22', 'Flo23', {weight: 10});
@@ -351,10 +357,15 @@ export default {
       graph.addLink('Г-205-1f', 'Г-205-1', {weight: 10});
 
       graph.addLink('Flo28', 'Flo29', {weight: 10});
+      graph.addLink('Flo29', 'stairs2f', {weight: 10});
       graph.addLink('Flo29', 'Г-204f', {weight: 10});
       graph.addLink('Г-204f', 'Г-204', {weight: 10});
 
+      graph.addLink('stairs2', 'stairs2f', {weight: 10});
+
+
       graph.addLink('Flo29', 'Flo30', {weight: 10});
+      graph.addLink('Flo30', 'stairs2f', {weight: 10});
       graph.addLink('Flo30', 'Г-203f', {weight: 10});
       graph.addLink('Г-203f', 'Г-203', {weight: 10});
 
@@ -387,7 +398,7 @@ export default {
       // сохраняю в джисон связь между точками
       this.map = graph                                               
 
-      // привязываю точки к координатам на кавас
+// привязываю точки к координатам на кавас
       let coordinates = {
         'Flo1': {
           x: 220,
@@ -475,11 +486,21 @@ export default {
         },
         'Г-226-2f': {
           x: 150,
-          y: 68
+          y: 68,
+          sensors: [
+            'sen226-2_1',
+            'sen226-2_2',
+            'sen226-2_3'
+            ]
         },
         'Г-226-2': {
           x: 150,
-          y: 35
+          y: 35,
+          sensors: [
+            'sen226-2_1',
+            'sen226-2_2',
+            'sen226-2_3'
+            ]
         },
 
         'Flo4': {
@@ -493,19 +514,39 @@ export default {
         },
         'Г-226f': {
           x: 115,
-          y: 98
+          y: 98,
+          sensors: [
+            'sen226_1',
+            'sen226_2',
+            'sen226_3'
+            ]
         },
         'Г-226': {
           x: 137,
-          y: 115
+          y: 115,
+          sensors: [
+            'sen226_1',
+            'sen226_2',
+            'sen226_3'
+            ]
         },
         'Г-226-1f': {
           x: 116,
-          y: 68
+          y: 68,
+          sensors: [
+            'sen226-1_1',
+            'sen226-1_2',
+            'sen226-1_3'
+            ]
         },
         'Г-226-1': {
           x: 115,
-          y: 35
+          y: 35,
+          sensors: [
+            'sen226-1_1',
+            'sen226-1_2',
+            'sen226-1_3'
+            ]
         },
         
         'Flo5': {
@@ -529,19 +570,39 @@ export default {
         },
         'Г-224f': {
           x: 71,
-          y: 65
+          y: 65,
+          sensors: [
+            'sen224_1',
+            'sen224_2',
+            'sen224_3'
+            ]
         },
         'Г-224': {
           x: 32,
-          y: 65
+          y: 65,
+          sensors: [
+            'sen224_1',
+            'sen224_2',
+            'sen224_3'
+            ]
         },
         'Г-225f': {
           x: 85,
-          y: 33
+          y: 33,
+          sensors: [
+            'sen225_1',
+            'sen225_2',
+            'sen225_3'
+            ]
         },
          'Г-225': {
           x: 70,
-          y: 13
+          y: 13,
+          sensors: [
+            'sen225_1',
+            'sen225_2',
+            'sen225_3'
+            ]
         },
 
         'Flo7': {
@@ -555,11 +616,21 @@ export default {
         },
         'Г-223f': {
           x: 72,
-          y: 120
+          y: 120,
+          sensors: [
+            'sen223_1',
+            'sen223_2',
+            'sen223_3'
+            ]
         },
          'Г-223': {
           x: 32,
-          y: 118
+          y: 118,
+          sensors: [
+            'sen223_1',
+            'sen223_2',
+            'sen223_3'
+            ]
         },
 
          'Flo8': {
@@ -571,6 +642,7 @@ export default {
            'sen_7'
           ]
         },
+// не прописаные  ниже      
          'Г-222f': {
           x: 72,
           y: 178
@@ -921,11 +993,11 @@ export default {
           x: 461,
           y: 81
         },
-         'Г-202f': {
+        'Г-202f': {
           x: 476,
           y: 81
         },
-         'Г-202': {
+        'Г-202': {
           x: 496,
           y: 36
         },
@@ -933,33 +1005,32 @@ export default {
           x: 511,
           y: 77
         },
-         'Г-202-1f': {
+        'Г-202-1f': {
           x: 461,
           y: 66
         },
-         'Г-202-1': {
+        'Г-202-1': {
           x: 461,
           y: 35
         },
-
 
         'Flo30': {
           x: 461,
           y: 116
         },
-         'Г-203f': {
+        'Г-203f': {
           x: 476,
           y: 116
         },
-         'Г-203': {
+        'Г-203': {
           x: 512,
           y: 116
         },
-         'Г-201f': {
+        'Г-201f': {
           x: 447,
           y: 116
         },
-         'Г-201': {
+        'Г-201': {
           x: 382,
           y: 116
         },
@@ -967,7 +1038,7 @@ export default {
           x: 291,
           y: 97
         },
-         'Г-201-1': {
+        'Г-201-1': {
           x: 275,
           y: 51
         },
@@ -975,7 +1046,7 @@ export default {
           x: 365,
           y: 97
         },
-         'Г-201-2': {
+        'Г-201-2': {
           x: 347,
           y: 51
         },
@@ -983,7 +1054,7 @@ export default {
           x: 427,
           y: 97
         },
-         'Г-201-3': {
+        'Г-201-3': {
           x: 414,
           y: 51
         },
@@ -991,14 +1062,117 @@ export default {
           x: 308,
           y: 116
         },
-         'Г-201-4': {
+        'Г-201-4': {
           x: 274,
           y: 116
+        },
+
+
+        'roof1': {
+          x: 111,
+          y: 144
+        },
+        'roof2': {
+          x: 444,
+          y: 144
+        },
+        'roof3': {
+          x: 111,
+          y: 333
+        },
+        'roof4': {
+          x: 444,
+          y: 333
+        },
+
+        'roof11': {
+          x: 151,
+          y: 144
+        },
+        'roof21': {
+          x: 244,
+          y: 144
+        },
+        'roof31': {
+          x: 311,
+          y: 144
+        },
+        'roof41': {
+          x: 344,
+          y: 144
+        },
+
+        'roof12': {
+          x: 151,
+          y: 333
+        },
+        'roof22': {
+          x: 244,
+          y: 333
+        },
+        'roof32': {
+          x: 311,
+          y: 333
+        },
+        'roof42': {
+          x: 344,
+          y: 333
+        },
+
+        'roof13': {
+          x: 111,
+          y: 170
+        },
+        'roof23': {
+          x: 111,
+          y: 270
+        },
+        'roof33': {
+          x: 111,
+          y: 200
+        },
+        'roof24': {
+          x: 444,
+          y: 270
+        },
+        'roof34': {
+          x: 444,
+          y: 200
+        },
+        'roof44': {
+          x: 444,
+          y: 270
+        },
+
+        'stairs1': {
+          x: 36,
+          y: 151
+        },
+        'stairs1f': {
+          x: 84,
+          y: 151
+        },
+        'stairs2': {
+          x: 510,
+          y: 151
+        },
+        'stairs2f': {
+          x: 461,
+          y: 151
+        },
+        'stairs3': {
+          x: 274,
+          y: 365
+        },
+
+        'wc': {
+          x: 310,
+          y: 360
         },
       };
 
       this.mapCoord = coordinates;
-
+// датчики ниже
       let sensors = {
         'sen_1': {
           x: 240, 
@@ -1090,7 +1264,84 @@ export default {
           x: 202, 
           y: 64
         },
+
+        'sen226_1': {
+          x: 166, 
+          y: 103
+        },
+        'sen226_2': {
+          x: 107,
+          y: 134
+        },
+        'sen226_3': {
+          x: 169, 
+          y: 134
+        },
+        'sen226-2_1':{
+          x: 170, 
+          y: 8
+        },
+        'sen226-2_2':{
+          x: 140, 
+          y: 8
+        },
+        'sen226-2_3':{
+          x: 170, 
+          y: 64
+        },
+        'sen226-1_1':{
+          x: 106, 
+          y: 8
+        },
+        'sen226-1_2':{
+          x: 134, 
+          y: 8
+        },
+        'sen226-1_3':{
+          x: 134, 
+          y: 64
+        },
+
+         'sen225_1': {
+          x: 99, 
+          y: 8
+        },
+        'sen225_2': {
+          x: 6,
+          y: 8
+        },
+        'sen225_3': {
+          x: 6, 
+          y: 31
+        },
             
+        'sen224_1': {
+          x: 69, 
+          y: 39
+        },
+        'sen224_2': {
+          x: 6,
+          y: 36
+        },
+        'sen224_3': {
+          x: 6, 
+          y: 96
+        },
+
+        'sen223_1': {
+          x: 69, 
+          y: 103
+        },
+        'sen223_2': {
+          x: 6,
+          y: 103
+        },
+        'sen223_3': {
+          x: 6, 
+          y: 137
+        },  
+// прописаны выше
+
       };
       this.sensCoord = sensors;
       
