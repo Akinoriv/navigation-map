@@ -4,18 +4,18 @@
   <div> 
     <h2> Введите расстоение до датчика </h2>
     <label for="P1"> Длина №1 </label>
-    <input required="true" class="col-sm-1" type="text"  id="P1" placeholder="P1" v-model="x.c" > 
+    <input required="true" class="col-sm-1" type="text"  id="P1" placeholder="P1" v-model="lengthForSens[0]" > 
     <br>
     <label for="P2"> Длина №2 </label>
-    <input required="true" class="col-sm-1" type="text"  id="P2" placeholder="P2" v-model="y.c" > 
+    <input required="true" class="col-sm-1" type="text"  id="P2" placeholder="P2" v-model="lengthForSens[1]" > 
     <br>
     <label for="P3"> Длина №3 </label> 
-    <input required="true" class="col-sm-1" type="text"  id="P3" placeholder="P3" v-model="z.c" > 
+    <input required="true" class="col-sm-1" type="text"  id="P3" placeholder="P3" v-model="lengthForSens[2]" > 
     
   </div>
   <div>
     <h2>Координаты вашей точки</h2> 
-    <a> {{trilatiratiom2d()}} </a> 
+    <a> {{trilatiratiom2d()}}</a> {{test()}}
   </div>
   <div>
     <h3> Введите номера кабинетов для построения маршрута </h3> <p> Доступные значения:с Г-213 по Г-227-2 </p>
@@ -61,12 +61,15 @@ export default {
         b: 0,
         c: 40
       },
+      lengthForSens: [],
+
       q: [],
       w: [],
       ctx: null,  
       
       map : {},
       mapCoord : {},
+      sensCoord : {},
       mapWay : {},
       cabinets : {
         a : 'Г-227',
@@ -75,8 +78,13 @@ export default {
       mathFun : {
         x: [],
         y: []
+      },
+      testFun : {
+        x: [],
+        y: []
       }
     }
+
 },
   
   methods: {
@@ -102,6 +110,7 @@ export default {
         ctx.stroke(); // для отображения всего поверх картинки
       } 
  
+ 
       // работает после нажатия на канвас
       canvas.addEventListener('click', function (e) {
         var q = e.pageX - e.target.offsetLeft;
@@ -120,7 +129,6 @@ export default {
 
         // ищет ближайшую точку от клика мышки по всему графу
         for (let a in that.mapCoord ) {
-          //let id = that.mapCoord[a].id;
           let x = that.mapCoord[a].x;
           let y = that.mapCoord[a].y;     
           var XYmin =  Math.sqrt((q - x)*(q - x) + (w - y)*(w - y));
@@ -129,27 +137,42 @@ export default {
             minD = XYmin;
             idMinCab = a;
           }
+
         }
+       
+
         // перезапись маршрута
         that.cabinets.a = idMinCab;
         that.graphFine();
         that.mathFun.x = that.mapCoord[idMinCab].x;
         that.mathFun.y = that.mapCoord[idMinCab].y;
+
+        // авто отрисовка датчиков
+        for (let a in that.mapCoord[idMinCab].sensors) {
+          let id = that.mapCoord[idMinCab].sensors[a];
+          that.testFun = id;
+          let x = that.sensCoord[id].x;
+          let y = that.sensCoord[id].y; 
+          ctx.rect(x, y, 2, 2);    
+          that.lengthForSens[a] =  Math.sqrt((q - x)*(q - x) + (w - y)*(w - y));
+        }
+
         // посторение линий от клика мышки до ближайшего графа
         ctx.moveTo(q, w);
         ctx.lineTo(that.mathFun.x, that.mathFun.y);
         ctx.lineWidth = 5;
         ctx.lineCap = 'round';
-        var gradient = ctx.createLinearGradient(0, 0, 460, 0)
-        gradient.addColorStop(0.00, 'red')
-        gradient.addColorStop(0.14, 'orange')
-        gradient.addColorStop(0.28, 'yellow')
-        gradient.addColorStop(0.42, 'green')
+        var gradient = ctx.createLinearGradient(0, 0, 460, 460)
+        gradient.addColorStop(0.00, 'indigo')
+        gradient.addColorStop(0.14, 'violet')
+        gradient.addColorStop(0.28, 'blue')
+        gradient.addColorStop(0.42, 'violet')
         gradient.addColorStop(0.56, 'blue')
         gradient.addColorStop(0.70, 'indigo')
         gradient.addColorStop(0.84, 'violet')
         ctx.strokeStyle = gradient; 
 
+       
         // построение маршрута 
         for (let a in that.mapWay ) {
           let id = that.mapWay[a].id;
@@ -164,16 +187,19 @@ export default {
     },
 
       test: function (){
-        return(this.cabinets.a)
+        return(this.testFun)
       },
 
     // Подсчет координат
     trilatiratiom2d: function () {
       let q = []
       let w = []
-      var p1 = -2 * this.x.a * w - 2 * this.x.b * q + Math.pow(this.x.a, 2) + Math.pow(this.x.b, 2) - Math.pow(this.x.c, 2)
-      var p2 = -2 * this.y.a * w - 2 * this.y.b * q + Math.pow(this.y.a, 2) + Math.pow(this.y.b, 2) - Math.pow(this.y.c, 2)
-      var p3 = -2 * this.z.a * w - 2 * this.z.b * q + Math.pow(this.z.a, 2) + Math.pow(this.z.b, 2) - Math.pow(this.z.c, 2)
+      var p1 = -2 * this.x.a * w - 2 * this.x.b * q + Math.pow(this.x.a, 2) 
+               + Math.pow(this.x.b, 2) - Math.pow(this.x.c, 2);
+      var p2 = -2 * this.y.a * w - 2 * this.y.b * q + Math.pow(this.y.a, 2)
+               + Math.pow(this.y.b, 2) - Math.pow(this.y.c, 2);
+      var p3 = -2 * this.z.a * w - 2 * this.z.b * q + Math.pow(this.z.a, 2)
+               + Math.pow(this.z.b, 2) - Math.pow(this.z.c, 2);
       this.w = (p1 - p2) / (2 * this.x.b)
       this.q = -(p2 - p3) / (2 * this.z.a) + 6 
       return ("координата х = " + this.q + ", координата y = " + this.w)
@@ -358,50 +384,94 @@ export default {
       graph.addLink('Flo31', 'Г-202-1f', {weight: 10});
       graph.addLink('Г-202-1f', 'Г-202-1', {weight: 10});
 
-
       // сохраняю в джисон связь между точками
-      this.map = graph
-                                               
+      this.map = graph                                               
 
       // привязываю точки к координатам на кавас
       let coordinates = {
         'Flo1': {
           x: 220,
-          y: 83
+          y: 83,
+          sensors: [
+           'sen_1',
+           'sen_2',
+           'sen_3'
+          ]
         },
         'Г-227-2f': {
           x: 220,
-          y: 68
+          y: 68,
+          sensors: [
+            'sen227-2_1',
+            'sen227-2_2',
+            'sen227-2_3'
+            ]
         },
         'Г-227-2': {
           x: 220,
-          y: 35
+          y: 35,
+          sensors: [
+            'sen227-2_1',
+            'sen227-2_2',
+            'sen227-2_3'
+            ]
         },
 
         'Flo2': {
           x: 185,
-          y: 83
+          y: 83,
+          sensors: [
+           'sen_2',
+           'sen_3',
+           'sen_4'
+          ]
         },
         'Г-227f': {
           x: 185,
-          y: 98
+          y: 98,
+          sensors: [
+           'sen227_1',
+           'sen227_2',
+           'sen227_3'
+          ]
         },
         'Г-227': {
           x: 205,
-          y: 115
+          y: 115,
+          sensors: [
+           'sen227_1',
+           'sen227_2',
+           'sen227_3'
+          ]
         },
+        
         'Г-227-1f': {
           x: 185,
-          y: 68
+          y: 68,
+          sensors: [
+            'sen227-1_1',
+            'sen227-1_2',
+            'sen227-1_3'
+            ]
         },
         'Г-227-1': {
           x: 185,
-          y: 35
+          y: 35,
+          sensors: [
+            'sen227-1_1',
+            'sen227-1_2',
+            'sen227-1_3'
+            ]
         },
 
         'Flo3': {
           x: 150,
-          y: 83
+          y: 83,
+          sensors: [
+           'sen_5',
+           'sen_3',
+           'sen_4'
+          ]
         },
         'Г-226-2f': {
           x: 150,
@@ -414,7 +484,12 @@ export default {
 
         'Flo4': {
           x: 116,
-          y: 83
+          y: 83,
+          sensors: [
+           'sen_5',
+           'sen_3',
+           'sen_4'
+          ]
         },
         'Г-226f': {
           x: 115,
@@ -435,12 +510,22 @@ export default {
         
         'Flo5': {
           x: 85,
-          y: 87
+          y: 87,
+          sensors: [
+           'sen_5',
+           'sen_6',
+           'sen_7'
+          ]
         },
 
         'Flo6': {
           x: 85,
-          y: 65
+          y: 65,
+          sensors: [
+           'sen_5',
+           'sen_6',
+           'sen_7'
+          ]
         },
         'Г-224f': {
           x: 71,
@@ -461,7 +546,12 @@ export default {
 
         'Flo7': {
           x: 85,
-          y: 120
+          y: 120,
+          sensors: [
+           'sen_8',
+           'sen_5',
+           'sen_7'
+          ]
         },
         'Г-223f': {
           x: 72,
@@ -474,7 +564,12 @@ export default {
 
          'Flo8': {
           x: 85,
-          y: 178
+          y: 178,
+          sensors: [
+           'sen_8',
+           'sen_9',
+           'sen_7'
+          ]
         },
          'Г-222f': {
           x: 72,
@@ -900,9 +995,104 @@ export default {
           x: 274,
           y: 116
         },
-      }
+      };
 
-      this.mapCoord = coordinates
+      this.mapCoord = coordinates;
+
+      let sensors = {
+        'sen_1': {
+          x: 240, 
+          y: 69
+        },
+        'sen_2': {
+          x: 200,
+          y: 97
+        },
+        'sen_3': {
+          x: 164, 
+          y: 69
+        },
+        'sen_4': {
+          x: 126, 
+          y: 97
+        },
+        'sen_5': {
+          x: 102, 
+          y: 69
+        },
+        'sen_6': {
+          x: 72, 
+          y: 34
+        },
+         'sen_7': {
+          x: 72, 
+          y: 112
+        },
+         'sen_8': {
+          x: 103, 
+          y: 148
+        },
+         'sen_9': {
+          x: 72, 
+          y: 187
+        },
+        'sen_10': {
+          x: 103, 
+          y: 148
+        },
+         'sen_11': {
+          x: 72, 
+          y: 187
+        },
+        'sen_12': {
+          x: 103, 
+          y: 148
+        },
+         'sen_13': {
+          x: 72, 
+          y: 187
+        },
+
+
+        'sen227_1': {
+          x: 238, 
+          y: 103
+        },
+        'sen227_2': {
+          x: 173,
+          y: 134
+        },
+        'sen227_3': {
+          x: 238, 
+          y: 134
+        },
+        'sen227-2_1':{
+          x: 210, 
+          y: 8
+        },
+        'sen227-2_2':{
+          x: 238, 
+          y: 8
+        },
+        'sen227-2_3':{
+          x: 238, 
+          y: 64
+        },
+        'sen227-1_1':{
+          x: 174, 
+          y: 8
+        },
+        'sen227-1_2':{
+          x: 202, 
+          y: 8
+        },
+        'sen227-1_3':{
+          x: 202, 
+          y: 64
+        },
+            
+      };
+      this.sensCoord = sensors;
       
       return graph
     },
