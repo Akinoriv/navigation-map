@@ -123,11 +123,11 @@ export default {
         ctx.fillRect(0, 0, 552, 474);
         ctx.beginPath();
 
-        ctx.rect(q, w, 5, 5);
-         // отрисовать все точки на канвас 
-        for (let a in that.mapCoord ) {
-          ctx.rect(that.mapCoord[a].x, that.mapCoord[a].y, 4, 4);
-        }
+        // ctx.rect(q, w, 5, 5);
+        //  // отрисовать все точки на канвас 
+        // for (let a in that.mapCoord ) {
+        //   ctx.rect(that.mapCoord[a].x, that.mapCoord[a].y, 4, 4);
+        // }
 
         var idMinCab = '';
         var minD = 10000;
@@ -179,12 +179,12 @@ export default {
 
        
         // построение маршрута 
-        // for (let a in that.mapWay ) {
-        //   let id = that.mapWay[a].id;
-        //   let x = that.mapCoord[id].x;
-        //   let y = that.mapCoord[id].y;
-        //   ctx.lineTo(x, y);
-        // }
+        for (let a in that.mapWay ) {
+          let id = that.mapWay[a].id;
+          let x = that.mapCoord[id].x;
+          let y = that.mapCoord[id].y;
+          ctx.lineTo(x, y);
+        }
         // отрисовка
         ctx.stroke(); 
       });
