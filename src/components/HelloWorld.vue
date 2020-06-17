@@ -106,7 +106,7 @@ export default {
       canvas.height = 474;
       canvas.width = 552;     
       var img = new Image();
-      img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/mapG2F.png?raw=true";
+      img.src = "https://github.com/Akinoriv/vkr/blob/master/src/assets/mapG2Fnew.png?raw=true";
       // отображение картинки карты
       img.onload = function() {
         var pattern = ctx.createPattern(img, "no-repeat");
@@ -169,12 +169,12 @@ export default {
         ctx.lineCap = 'round';
         var gradient = ctx.createLinearGradient(0, 0, 460, 460)
         gradient.addColorStop(0.00, 'indigo')
-        gradient.addColorStop(0.14, 'violet')
-        gradient.addColorStop(0.28, 'blue')
-        gradient.addColorStop(0.42, 'violet')
-        gradient.addColorStop(0.56, 'blue')
+        gradient.addColorStop(0.14, 'indigo')
+        gradient.addColorStop(0.28, 'indigo')
+        gradient.addColorStop(0.42, 'indigo')
+        gradient.addColorStop(0.56, 'indigo')
         gradient.addColorStop(0.70, 'indigo')
-        gradient.addColorStop(0.84, 'violet')
+        gradient.addColorStop(0.84, 'indigo')
         ctx.strokeStyle = gradient; 
 
        
