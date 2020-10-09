@@ -1,5 +1,8 @@
 # navigstion
 
+![navig](https://user-images.githubusercontent.com/49586977/95616557-a3778280-0a72-11eb-8824-a0128408aee1.gif)
+
+
 ## Project setup
 ```
 npm install
